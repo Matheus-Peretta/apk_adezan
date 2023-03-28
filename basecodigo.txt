@@ -1,0 +1,67 @@
+<script>
+      var tempoPezinho = 120 //01:20 um minuto e vinte segundos
+      var tempoPezinhoMaior = 200
+      var tempoBase = 300
+      var tempoBaseMaior = 400
+      var tempoLateral = 200
+      var tempoLateralMaior = 300
+      var tempoTesteiro = 230
+      var tempoTesteiroMaior = 330
+      var tempoTampa = 300
+      var tempoTampaMaior = 400
+      var tempoMioleira = 200
+      var tempoMioleiraMaior = 500
+      var tempoSerigrafiaLateral = 100
+      var tempoSerigrafiaTesteiro = 40 // 40 segundos
+      var tempoSerigrafiaTampa = 30
+      var tempoSerigrafiaBase = 30
+      var tempoAmarracao = 130
+      var tempoMontagemKit = 130
+      var tempoCaixaMontada = 330
+      var tempoCaixaMontadaMaior = 500
+      var pezinhoCm = document.getElementById('largpezinho').innerHTML; //innerhtml sim ou não?
+      var baseCm = document.getElementById('largbase');
+      var lateralCm = document.getElementById('larglateral');
+      var testeiroCm = document.getElementById('largtesteiro');
+      var tampaCm = document.getElementById('largtampa');
+
+      //pezinho
+      if(pezinhoCm<=100){
+            pezinhoCm = tempoPezinho
+      } else {
+            pezinhoCm = tempoPezinhoMaior
+      };
+      console.log(pezinhoCm);
+
+      //base
+      if(baseCm<=100){
+            baseCm = tempoBase
+      } else {
+            baseCm = tempoBaseMaior
+      };
+      console.log(baseCm);
+
+      //lateral
+      if(lateralCm<=100){
+            lateralCm = tempoLateral
+      } else {
+            lateralCm = tempoLateralMaior
+      };
+      console.log(lateralCm);
+
+      //testeiro
+      if(testeiroCm<=100){
+            testeiroCm = tempoTesteiro
+      } else {
+            testeiroCm = tempoTesteiroMaior
+      };
+      console.log(testeiroCm);
+
+      //tampa
+      if(tampaCm<=100){
+            tampaCm = tempoTampa
+      } else {
+            tampaCm = tempoTampaMaior
+      };
+      console.log(tampaCm);
+</script>
