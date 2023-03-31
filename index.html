@@ -218,22 +218,17 @@
         </div>
         <!-- FIM QUANTIDADE -->
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="button" class="btn btn-outline-success" style="margin-top: 15px;" onclick="document.getElementById('calcular').innerHTML = 'O tempo de produção desta caixa é de: '">Calcular</button>
+          <button type="button" class="btn btn-outline-success" style="margin-top: 15px;" onclick="amazenar()">Calcular</button>
           <h2 id="calcular"></h2>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script>
-      var tempoPezinho = 120 //01:20 um minuto e vinte segundos
-      var tempoPezinhoMaior = 200
-      var tempoBase = 300
-      var tempoBaseMaior = 400
-      var tempoLateral = 200
-      var tempoLateralMaior = 300
-      var tempoTesteiro = 230
-      var tempoTesteiroMaior = 330
-      var tempoTampa = 300
-      var tempoTampaMaior = 400
+     //01:20 um minuto e vinte segundos
+      
+      
+      
+      
       var tempoMioleira = 200
       var tempoMioleiraMaior = 500
       var tempoSerigrafiaLateral = 100
@@ -244,51 +239,84 @@
       var tempoMontagemKit = 130
       var tempoCaixaMontada = 330
       var tempoCaixaMontadaMaior = 500
-      var pezinhoCm = document.getElementById('largpezinho').innerHTML; //innerhtml sim ou não?
-      var baseCm = document.getElementById('largbase');
-      var lateralCm = document.getElementById('larglateral');
-      var testeiroCm = document.getElementById('largtesteiro');
-      var tampaCm = document.getElementById('largtampa');
+      
+      
+      
+      
+      
+      
+      function amazenar(){
+        //PEZINHO
+        var tempoPezinho = 120
+        var tempoPezinhoMaior = 200
+        var pezinhoCm = window.document.getElementById('largpezinho')
+        var pn1 = Number(pezinhoCm.value)
+        
 
-      //pezinho
-      if(pezinhoCm<=100){
-            pezinhoCm = tempoPezinho
-      } else {
-            pezinhoCm = tempoPezinhoMaior
-      };
-      console.log(pezinhoCm);
+        if(pn1<=100){
+            pn1 = tempoPezinho
+        } else {
+            pn1 = tempoPezinhoMaior
+        }
+        console.log(`O tempo armazenado para o pézinho foi de ${pn1}.`);
+      
+        //BASE    
+        var tempoBase = 300
+        var tempoBaseMaior = 400
+        var baseCm = document.getElementById('largbase');
+        var bn1 = Number(baseCm.value)
+        if(bn1<=100){
+            bn1 = tempoBase
+        } else {
+            bn1 = tempoBaseMaior
+        }
+        console.log(`O tempo armazenado para a base foi de ${bn1}.`);
 
-      //base
-      if(baseCm<=100){
-            baseCm = tempoBase
-      } else {
-            baseCm = tempoBaseMaior
-      };
-      console.log(baseCm);
+        //LATERAL
+        var tempoLateral = 200
+        var tempoLateralMaior = 300
+        var lateralCm = document.getElementById('larglateral');
+        var ln1 = Number(lateralCm.value)
+        if(ln1<=100){
+            ln1 = tempoLateral
+        } else {
+            ln1 = tempoLateralMaior
+        }
+        console.log(`O tempo armazenado para a lateral foi de ${ln1}.`);
 
-      //lateral
-      if(lateralCm<=100){
-            lateralCm = tempoLateral
-      } else {
-            lateralCm = tempoLateralMaior
-      };
-      console.log(lateralCm);
+        //TESTEIRO
+        var tempoTesteiro = 230
+        var tempoTesteiroMaior = 330
+        var testeiroCm = document.getElementById('largtesteiro');
+        var tn1 = Number(testeiroCm.value)
+        if(tn1<=100){
+            tn1 = tempoTesteiro
+        } else {
+            tn1 = tempoTesteiroMaior
+        }
+        console.log(`O tempo armazenado para o testeiro foi de ${tn1}.`);
 
-      //testeiro
-      if(testeiroCm<=100){
-            testeiroCm = tempoTesteiro
-      } else {
-            testeiroCm = tempoTesteiroMaior
-      };
-      console.log(testeiroCm);
+        //TAMPA
+        var tempoTampa = 300
+        var tempoTampaMaior = 400
+        var tampaCm = document.getElementById('largtampa');
+        var tan1 = Number(tampaCm.value)
+        if(tan1<=100){
+            tan1 = tempoTampa
+        } else {
+            tan1 = tempoTampaMaior
+        }
+        console.log(`O tempo armazenado para a tampa foi de ${tan1}.`);
 
-      //tampa
-      if(tampaCm<=100){
-            tampaCm = tempoTampa
-      } else {
-            tampaCm = tempoTampaMaior
-      };
-      console.log(tampaCm);
+        //QTD PEZINHO
+        var quantidadep = document.getElementById('qtdpezinho');
+        var qtdpezinho = Number(quantidadep.value);
+        var somapezinho = qtdpezinho * pn1 
+        console.log(somapezinho);
+
+        somaTotal = pn1 + bn1 + ln1 + tn1 + tan1 + somapezinho
+        onclick= document.getElementById('calcular').innerHTML = `O tempo de produção desta caixa é de: ${somaTotal}`
+      }
     </script>
   </body>
 </html>
