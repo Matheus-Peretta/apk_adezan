@@ -189,10 +189,10 @@
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="qtdmioleira" class="col-form-label">Mioleira</label>
+              <label for="mio" class="col-form-label">Mioleira</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="qtdmioleira" class="form-control" aria-describedby="passwordHelpInline" min="0">
+              <input type="number" id="mio" class="form-control" aria-describedby="passwordHelpInline" min="0">
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -215,13 +215,57 @@
               </label>
             </div>
           </div>
-        </div>
         <!-- FIM QUANTIDADE -->
+        <!-- serigrafia, Caixa montada-->
+        <div class="row" style="margin-top: 40px;">
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="serilateral">
+              <label class="form-check-label" for="serilateral">
+                Serigrafia Lateral
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="seripezinho" checked>
+              <label class="form-check-label" for="seripezinho">
+                Serigrafia Pézinho
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="seritesteiro">
+              <label class="form-check-label" for="seritesteiro">
+                Serigrafia Testeiro
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="seritampa">
+              <label class="form-check-label" for="seritampa">
+                Serigrafia Tampa
+              </label>
+            </div>
+        </div>
+        <div class="col">
+          <p>A caixa vai montada? </p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadas">
+            <label class="form-check-label" for="cxmontadas">
+              Sim
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadan" checked>
+            <label class="form-check-label" for="cxmontadan">
+              Não
+            </label>
+          </div>
+      </div>
+      </div>
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="button" class="btn btn-outline-success" style="margin-top: 15px;" onclick="armazenar() , qtdhomens()">Calcular</button>
+          <button type="button" class="btn btn-outline-success" style="margin-top: 15px;" onclick="armazenar() , qtdhomens(), resumo()">Calcular</button>
           <h2 id="calcular"></h2>
           <h2 id="homens"></h2>
           <h2 id="produtividade"></h2>
+          <h1 id="resuminho"></h1>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -271,53 +315,78 @@
       var tempoTampaMaior = 400
       var tampaCm = document.getElementById('largtampa');
 
+      //MIOLEIRA
+      var mio = document.getElementById('mio');
+
       function armazenar(){
         
         //PEZINHO
         var pn1 = Number(pezinhoCm.value)
-        if(pn1<=100){
-            pn1 = tempoPezinho
-        } else {
-            pn1 = tempoPezinhoMaior
+        if(pn1 == 0){
+          pn1 = 0
+        } else if(pn1<=100){
+          pn1 = tempoPezinho
+        } else{
+          pn1 = tempoPezinhoMaior
         }
         console.log(`O tempo armazenado para o pézinho foi de ${pn1}.`);
         
 
         //BASE    
         var bn1 = Number(baseCm.value)
-        if(bn1<=100){
+        if(bn1 == 0){
+            bn1 = 0
+        } else if(bn1<=100){
             bn1 = tempoBase
-        } else {
-            bn1 = tempoBaseMaior
+        } else{
+          bn1 = tempoBaseMaior
         }
         console.log(`O tempo armazenado para a base foi de ${bn1}.`);
 
         //LATERAL
         var ln1 = Number(lateralCm.value)
-        if(ln1<=100){
+        if(ln1 == 0){
+            ln1 = 0
+        } else if(ln1<=100){
             ln1 = tempoLateral
-        } else {
-            ln1 = tempoLateralMaior
+        } else{
+          ln1 = tempoLateralMaior
         }
         console.log(`O tempo armazenado para a lateral foi de ${ln1}.`);
 
         //TESTEIRO
         var tn1 = Number(testeiroCm.value)
-        if(tn1<=100){
+        if(tn1 == 0){
+            tn1 = 0
+        } else if(tn1<=100){
             tn1 = tempoTesteiro
-        } else {
-            tn1 = tempoTesteiroMaior
+        } else{
+          tn1 = tempoTesteiroMaior
         }
         console.log(`O tempo armazenado para o testeiro foi de ${tn1}.`);
 
         //TAMPA
         var tan1 = Number(tampaCm.value)
-        if(tan1<=100){
+        if(tan1 == 0){
+            tan1 = 0
+        } else if(tan1<=100){
             tan1 = tempoTampa
-        } else {
-            tan1 = tempoTampaMaior
+        } else{
+          tan1 = tempoTampaMaior
         }
         console.log(`O tempo armazenado para a tampa foi de ${tan1}.`);
+
+        //MIOLEIRA
+        var miolei = Number(mio.value)
+        if(miolei == 0){
+          miolei = 0
+        } else if(miolei<=5){
+          miolei = tempoMioleira
+        } else{
+          miolei = tempoMioleiraMaior
+        }
+        console.log(`O tempo de mioleira é: ${miolei}.`);
+        
 
         //QTD PEZINHO
         var quantidadep = document.getElementById('qtdpezinho');
@@ -325,15 +394,16 @@
         var somapezinho = qtdpezinho * pn1 
         console.log(`o tempo do pézinho é: ${somapezinho}`);
 
-        somaTotal = pn1 + bn1 + ln1 + tn1 + tan1 + somapezinho
+        
+
+        somaTotal = pn1 + bn1 + ln1 + tn1 + tan1 + somapezinho + miolei
         onclick= document.getElementById('calcular').innerHTML = `O tempo de produção desta caixa é de: ${somaTotal}`
 
-        produtividade = somaTotal * 8
+        produtividade = somaTotal / 8
         onclick= document.getElementById('produtividade').innerHTML = `Com esta quantidade de homens em 8 horas trabalhadas, são produzidas ${produtividade}`
       }
 
-
-      /*function qtdhomens(){
+      function qtdhomens(){
         //qtd homens base
         var compbasestr = window.document.getElementById('compbase');
         var compbase = Number(compbasestr.value);
@@ -372,7 +442,11 @@
 
         somaTotalHomens = alttampa + alttesteiro + altlateral + compbase
         document.getElementById('homens').innerHTML = `A quantidade de homens para este serviço, são ${somaTotalHomens} homens`
-      } */
+      } 
+
+      function resumo(){
+        document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / Tempo: ${somaTotal} / Produtividade: ${produtividade}`
+      }
     </script>
   </body>
 </html>
