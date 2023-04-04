@@ -203,14 +203,14 @@
           <div class="col">
             <div class="form-check">
               <p>Contém Tampa?</p>
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label" for="flexRadioDefault1">
+              <input class="form-check-input" type="radio" name="tampaselecio" id="tampasim">
+              <label class="form-check-label" for="tampasim">
                 Sim
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-              <label class="form-check-label" for="flexRadioDefault2">
+              <input class="form-check-input" type="radio" name="tampaselecio" id="tampanao" checked>
+              <label class="form-check-label" for="tampanao">
                 Não
               </label>
             </div>
@@ -226,7 +226,7 @@
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="seripezinho" checked>
+              <input class="form-check-input" type="checkbox" value="" id="seripezinho">
               <label class="form-check-label" for="seripezinho">
                 Serigrafia Pézinho
               </label>
@@ -386,7 +386,52 @@
           miolei = tempoMioleiraMaior
         }
         console.log(`O tempo de mioleira é: ${miolei}.`);
-        
+
+        //SERIGRAFIA LATERAL
+        var tempserilateral = document.getElementById('serilateral')
+        if(tempserilateral.checked){
+          tempserilateral = tempoSerigrafiaLateral
+        } else{
+          tempserilateral = 0
+        }
+        console.log(`O tempo de Serigrafia Lateral é: ${tempserilateral}.`);
+
+        //SERIGRAFIA TESTEIRO
+        var tempseritesteiro = document.getElementById('seritesteiro')
+        if(tempseritesteiro.checked){
+          tempseritesteiro = tempoSerigrafiaTesteiro
+        } else{
+          tempseritesteiro = 0
+        }
+        console.log(`O tempo de Serigrafia Testeiro é: ${tempseritesteiro}.`);
+
+        //SERIGRAFIA TAMPA
+        var tempseritampa = document.getElementById('seritampa')
+        if(tempseritampa.checked){
+          tempseritampa = tempoSerigrafiaTampa
+        } else{
+          tempseritampa = 0
+        }
+        console.log(`O tempo de Serigrafia Tampa é: ${tempseritampa}.`);
+
+        //SERIGRAFIA PÉZINHO
+        var tempseripezinho = document.getElementById('seripezinho')
+        if(tempseripezinho.checked){
+          tempseripezinho = tempoSerigrafiaBase
+        } else{
+          tempseripezinho = 0
+        }
+        console.log(`O tempo de Serigrafia Pézinho é: ${tempseripezinho}.`);
+
+        //CAIXA MONTADA
+        var cxmont = document.getElementsByName('flexRadioDefault')
+        var tempamakitmonta = null
+        if(cxmont[0].checked){
+          tempamakitmonta = tempoAmarracao + tempoMontagemKit + tempoCaixaMontada
+        } else if(cxmont[1].checked){
+          tempamakitmonta = 0
+        }
+        console.log(`O tempo de Caixa Montada é de: ${tempamakitmonta}. Montagem kit: ${tempoMontagemKit} + tempo amarração: ${tempoAmarracao} + Montagem Caixa: ${tempoCaixaMontada}`);
 
         //QTD PEZINHO
         var quantidadep = document.getElementById('qtdpezinho');
@@ -396,7 +441,7 @@
 
         
 
-        somaTotal = pn1 + bn1 + ln1 + tn1 + tan1 + somapezinho + miolei
+        somaTotal = pn1 + bn1 + ln1 + tn1 + tan1 + somapezinho + miolei + tempserilateral + tempseritesteiro + tempseritampa + tempseripezinho + tempamakitmonta
         onclick= document.getElementById('calcular').innerHTML = `O tempo de produção desta caixa é de: ${somaTotal}`
 
         produtividade = somaTotal / 8
