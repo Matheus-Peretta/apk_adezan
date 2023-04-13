@@ -229,16 +229,19 @@
           <div class="col">
             <p>A caixa vai montada?</p>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadas">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadas" onclick="aparecerCaixa()">
               <label class="form-check-label" for="cxmontadas">
                 Sim
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadan" checked>
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadan" onclick="sumirCaixa()">
               <label class="form-check-label" for="cxmontadan">
                 Não
               </label>
+            </div>
+            <div id="novacaixaform">
+
             </div>
           </div>
         </div>
@@ -479,6 +482,15 @@
 
       function resumo(){
         document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / Tempo: ${somaTotal} / Produtividade: ${produtividade}`
+      }
+
+      function aparecerCaixa(){
+        var cxMontadaInput = document.getElementById('cxmontadas')
+        document.getElementById('novacaixaform').innerHTML = '<input type="text" placeholder="Tamanho da Caixa"></input>'
+      }
+
+      function sumirCaixa(){
+        document.getElementById('novacaixaform').innerHTML = ''
       }
     </script>
   </body>
