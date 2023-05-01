@@ -274,7 +274,9 @@
       var tempoCaixaMontadaMaior = 500
       
       
-      
+      let somaTotal
+      let produtividade
+      let somaTotalHomens
       
       
       //PEZINHO
@@ -478,6 +480,12 @@
 
         somaTotalHomens = alttampa + alttesteiro + altlateral + compbase
         produtividade = (somaTotal / somaTotalHomens) / 8
+        let testinho = produtividade
+        for(let i = somaTotal; i<=48000; i+=somaTotal){
+          testinho = testinho + produtividade
+          console.log(i)
+          console.log(testinho)
+        }
       } 
 
       function resumo(){
