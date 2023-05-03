@@ -241,7 +241,7 @@
               </label>
             </div>
             <div id="novacaixaform">
-
+              <input type="text" placeholder="Tamanho da Caixa" id="cxmontAparecerCaixa">
             </div>
           </div>
         </div>
@@ -413,14 +413,16 @@
         console.log(`O tempo de Serigrafia Pézinho é: ${tempseripezinho}.`);
 
         //CAIXA MONTADA
-        var cxmont = document.getElementsByName('flexRadioDefault')
-        var tempamakitmonta = null
-        if(cxmont[0].checked){
-          tempamakitmonta = tempoAmarracao + tempoMontagemKit + tempoCaixaMontada
-        } else if(cxmont[1].checked){
-          tempamakitmonta = 0
+        var tempamakitmonta
+        if(cxMontadaInput.value>0 && cxMontadaInput.value<=300){
+          tempamakitmonta = tempoAmarracao + tempoCaixaMontada
+        } else if(cxMontadaInput.value>300 && cxMontadaInput.value<=500){
+          tempamakitmonta = tempoAmarracao + tempoCaixaMontadaMaior
+        } else{
+          tempamakitmonta = tempoAmarracao + tempoMontagemKit
         }
-        console.log(`O tempo de Caixa Montada é de: ${tempamakitmonta}. Montagem kit: ${tempoMontagemKit} + tempo amarração: ${tempoAmarracao} + Montagem Caixa: ${tempoCaixaMontada}`);
+        console.log(`O tempo de Caixa Montada é de: ${tempamakitmonta}. Montagem kit: ${tempoMontagemKit} + tempo amarração: ${tempoAmarracao}`);
+
 
         //QTD PEZINHO
         var quantidadep = document.getElementById('qtdpezinho');
@@ -430,8 +432,9 @@
 
         
 
-        somaTotal = pn1 + bn1 + ln1 + tn1 + tan1 + somapezinho + miolei + tempserilateral + tempseritesteiro + tempseritampa + tempseripezinho + tempamakitmonta 
+        somaTotal = pn1 + bn1 + ln1 + tn1 + tan1 + somapezinho + miolei + tempserilateral + tempseritesteiro + tempseritampa + tempseripezinho 
       }
+
 
       function qtdhomens(){
         //qtd homens base
@@ -439,7 +442,7 @@
         var compbase = Number(compbasestr.value);
         if(compbase <= 0){
             compbase = 0
-        } else if(compbase<=130){
+        } else if(compbase<=90){
             compbase = 1
         } else {
             compbase = 2
@@ -450,7 +453,7 @@
         var altlateral = Number(altlateralstr.value);
         if(altlateral <= 0){
             altlateral = 0
-        } else if(altlateral<=130){
+        } else if(altlateral<=90){
             altlateral = 1
         } else {
             altlateral = 2
@@ -461,7 +464,7 @@
         var alttesteiro = Number(alttesteirostr.value);
         if(alttesteiro <= 0){
           alttesteiro = 0
-        } else if(alttesteiro<=130){
+        } else if(alttesteiro<=90){
           alttesteiro = 1
         } else {
           alttesteiro = 2
@@ -472,33 +475,29 @@
         var alttampa = Number(alttampastr.value);
         if(alttampa <= 0){
           alttampa = 0
-        } else if(alttampa<=130){
+        } else if(alttampa<=90){
           alttampa = 1
         } else {
           alttampa = 2
         }
 
         somaTotalHomens = alttampa + alttesteiro + altlateral + compbase
-        produtividade = (somaTotal / somaTotalHomens) / 8
-        let testinho = produtividade
-        for(let i = somaTotal; i<=48000; i+=somaTotal){
-          testinho = testinho + produtividade
-          console.log(i)
-          console.log(testinho)
-        }
+        produtividade = (somaTotal / somaTotalHomens) / 48000
       } 
+
 
       function resumo(){
         document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / Tempo: ${somaTotal} / Produtividade: ${produtividade}`
       }
 
+
+      var cxMontadaInput = document.getElementById('cxmontAparecerCaixa')
       function aparecerCaixa(){
-        var cxMontadaInput = document.getElementById('cxmontadas')
-        document.getElementById('novacaixaform').innerHTML = '<input type="text" placeholder="Tamanho da Caixa"></input>'
+        cxMontadaInput.style.display = 'block'
       }
 
       function sumirCaixa(){
-        document.getElementById('novacaixaform').innerHTML = ''
+        cxMontadaInput.style.display = 'none'      
       }
     </script>
   </body>
