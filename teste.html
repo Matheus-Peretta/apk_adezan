@@ -434,30 +434,8 @@
 
         
 
-        somaTotal = pn1 + bn1 + ln1 + tn1 + tan1 + somapezinho + miolei + tempserilateral + tempseritesteiro + tempseritampa + tempseripezinho 
-
-        //deixando o tempo em formato correto
-        var tempoEmString = somaTotal.toString()
-        var quebrandoTempo = tempoEmString.split("")
-        console.log(quebrandoTempo)
-
-        var juntandoMinutos = quebrandoTempo[0]+quebrandoTempo[1]
-        var juntandoSegundos = quebrandoTempo[2]+quebrandoTempo[3]
-
-        passandoParaNumMin = parseInt(juntandoMinutos)
-        passandoParaNumSeg = parseInt(juntandoSegundos)
-
-        if(passandoParaNumSeg>59){
-          passandoParaNumSeg -= 60
-          passandoParaNumMin += 1
-          console.log(passandoParaNumMin,passandoParaNumSeg)
-        }
-        var time1 = new Date()
-        time1.setMinutes(passandoParaNumMin)
-        time1.setSeconds(passandoParaNumSeg)
-        var minutes = time1.getMinutes()
-        var segundos = time1.getSeconds()
-        console.log(`${minutes}:${segundos}`)
+        somaTotal = pn1 + bn1 + ln1 + tn1 + tan1 + somapezinho + miolei + tempserilateral + tempseritesteiro + tempseritampa + tempseripezinho
+        console.log(somaTotal) 
       }
 
 
@@ -507,12 +485,14 @@
         }
 
         somaTotalHomens = alttampa + alttesteiro + altlateral + compbase
-        produtividade = (passandoParaNumMin,passandoParaNumSeg / somaTotalHomens) / 480
+        tempoDivididoPorHomens = somaTotal / somaTotalHomens
+        produtividade = 48000 / tempoDivididoPorHomens
+
       } 
 
 
       function resumo(){
-        document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / Tempo: ${passandoParaNumMin}:${passandoParaNumSeg} / Produtividade: ${produtividade}`
+        document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / Tempo: 8 Horas / Produtividade: ${produtividade}`
       }
 
 
