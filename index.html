@@ -99,7 +99,7 @@
               <label for="larglateral" class="col-form-label">Lateral</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="larglateral" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
+              <input type="number" id="larglateral" class="form-control" aria-describedby="passwordHelpInline" required placeholder="Desabilitado" min="0" disabled>
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -112,7 +112,7 @@
               <label for="complateral" class="col-form-label">Lateral</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="altlateral" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
+              <input type="number" id="altlateral" class="form-control" aria-describedby="passwordHelpInline" required placeholder="Desabilitado" min="0" disabled>
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -130,7 +130,7 @@
               <label for="largtesteiro" class="col-form-label">Testeiro</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="largtesteiro" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
+              <input type="number" id="largtesteiro" class="form-control" aria-describedby="passwordHelpInline" required placeholder="Desabilitado" min="0" disabled>
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -143,7 +143,7 @@
               <label for="comptesteiro" class="col-form-label">Testeiro</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="alttesteiro" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
+              <input type="number" id="alttesteiro" class="form-control" aria-describedby="passwordHelpInline" required placeholder="Desabilitado" min="0" disabled>
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -161,7 +161,7 @@
               <label for="largtampa" class="col-form-label">Tampa</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="largtampa" class="form-control" aria-describedby="passwordHelpInline" placeholder="cm" min="0">
+              <input type="number" id="largtampa" class="form-control" aria-describedby="passwordHelpInline" placeholder="Desabilitado" min="0" disabled>
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -174,7 +174,7 @@
               <label for="comptampa" class="col-form-label">Tampa</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="alttampa" class="form-control" aria-describedby="passwordHelpInline" placeholder="cm" min="0">
+              <input type="number" id="alttampa" class="form-control" aria-describedby="passwordHelpInline" placeholder="Desabilitado" min="0" disabled>
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -192,7 +192,7 @@
               <label for="mio" class="col-form-label">Mioleira</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="mio" class="form-control" aria-describedby="passwordHelpInline" min="0">
+              <input type="number" id="mio" class="form-control" aria-describedby="passwordHelpInline" min="0" placeholder="Desabilitado" disabled>
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -229,19 +229,19 @@
           <div class="col">
             <p>A caixa vai montada?</p>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadas" onclick="aparecerCaixa()">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadas" onclick="aparecerCaixa()" disabled>
               <label class="form-check-label" for="cxmontadas">
                 Sim
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadan" onclick="sumirCaixa()">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadan" onclick="sumirCaixa()" disabled>
               <label class="form-check-label" for="cxmontadan">
                 Não
               </label>
             </div>
             <div id="novacaixaform">
-              <input type="text" placeholder="Tamanho da Caixa" id="cxmontAparecerCaixa">
+              <input type="text" placeholder="Tamanho da Caixa" id="cxmontAparecerCaixa" >
             </div>
           </div>
         </div>
@@ -440,9 +440,17 @@
 
 
       function qtdhomens(){
+        var qtdHpezinhostr = document.getElementById('largpezinho').value
+        var qtdHomensPezinho = Number(qtdHpezinhostr)
+        if(qtdHomensPezinho == 0 || qtdHomensPezinho ==null || qtdHomensPezinho ==undefined){
+          qtdHomensPezinho = 0
+        } else{
+          qtdHomensPezinho = 1
+        }
+
         //qtd homens base
-        var compbasestr = window.document.getElementById('compbase');
-        var compbase = Number(compbasestr.value);
+        var compbasestr = window.document.getElementById('compbase').value;
+        var compbase = Number(compbasestr);
         if(compbase <= 0){
             compbase = 0
         } else if(compbase<=90){
@@ -452,8 +460,8 @@
         }
 
         //qtd homens lateral
-        var altlateralstr = window.document.getElementById('altlateral');
-        var altlateral = Number(altlateralstr.value);
+        var altlateralstr = window.document.getElementById('altlateral').value;
+        var altlateral = Number(altlateralstr);
         if(altlateral <= 0){
             altlateral = 0
         } else if(altlateral<=90){
@@ -463,8 +471,8 @@
         }
 
         //qtd homens testeiro
-        var alttesteirostr = window.document.getElementById('alttesteiro');
-        var alttesteiro = Number(alttesteirostr.value);
+        var alttesteirostr = window.document.getElementById('alttesteiro').value;
+        var alttesteiro = Number(alttesteirostr);
         if(alttesteiro <= 0){
           alttesteiro = 0
         } else if(alttesteiro<=90){
@@ -474,8 +482,8 @@
         }
 
         //qtd homens tampa
-        var alttampastr = window.document.getElementById('alttampa');
-        var alttampa = Number(alttampastr.value);
+        var alttampastr = window.document.getElementById('alttampa').value;
+        var alttampa = Number(alttampastr);
         if(alttampa <= 0){
           alttampa = 0
         } else if(alttampa<=90){
@@ -484,7 +492,7 @@
           alttampa = 2
         }
 
-        somaTotalHomens = alttampa + alttesteiro + altlateral + compbase
+        somaTotalHomens = alttampa + alttesteiro + altlateral + compbase + qtdHomensPezinho 
         tempoDivididoPorHomens = somaTotal / somaTotalHomens
         produtividade = 48000 / tempoDivididoPorHomens
 
