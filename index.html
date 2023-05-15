@@ -92,121 +92,9 @@
         </div>
         <hr>
         <!-- FIM BASE -->
-        <!-- INÍCIO LATERAL -->
-        <div class="row" style="margin-top: 10px;">
-          <div class="col">
-            <div class="col-auto">
-              <label for="larglateral" class="col-form-label">Lateral</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" id="larglateral" class="form-control" aria-describedby="passwordHelpInline" required placeholder="Desabilitado" min="0" disabled>
-            </div>
-            <div class="col-auto">
-              <span id="passwordHelpInline" class="form-text">
-                Largura da Lateral
-              </span>
-            </div>
-          </div>
-          <div class="col">
-            <div class="col-auto">
-              <label for="complateral" class="col-form-label">Lateral</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" id="altlateral" class="form-control" aria-describedby="passwordHelpInline" required placeholder="Desabilitado" min="0" disabled>
-            </div>
-            <div class="col-auto">
-              <span id="passwordHelpInline" class="form-text">
-                Altura da Lateral
-              </span>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <!-- FIM LATERAL -->
-        <!-- INÍCIO TESTEIRO -->
-        <div class="row" style="margin-top: 10px;">
-          <div class="col">
-            <div class="col-auto">
-              <label for="largtesteiro" class="col-form-label">Testeiro</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" id="largtesteiro" class="form-control" aria-describedby="passwordHelpInline" required placeholder="Desabilitado" min="0" disabled>
-            </div>
-            <div class="col-auto">
-              <span id="passwordHelpInline" class="form-text">
-                Largura do Testeiro
-              </span>
-            </div>
-          </div>
-          <div class="col">
-            <div class="col-auto">
-              <label for="comptesteiro" class="col-form-label">Testeiro</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" id="alttesteiro" class="form-control" aria-describedby="passwordHelpInline" required placeholder="Desabilitado" min="0" disabled>
-            </div>
-            <div class="col-auto">
-              <span id="passwordHelpInline" class="form-text">
-                Altura do Testeiro
-              </span>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <!-- FIM TESTEIRO -->
-        <!-- INÍCIO TAMPA -->
-        <div class="row" style="margin-top: 10px;">
-          <div class="col">
-            <div class="col-auto">
-              <label for="largtampa" class="col-form-label">Tampa</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" id="largtampa" class="form-control" aria-describedby="passwordHelpInline" placeholder="Desabilitado" min="0" disabled>
-            </div>
-            <div class="col-auto">
-              <span id="passwordHelpInline" class="form-text">
-                Largura da Tampa
-              </span>
-            </div>
-          </div>
-          <div class="col">
-            <div class="col-auto">
-              <label for="comptampa" class="col-form-label">Tampa</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" id="alttampa" class="form-control" aria-describedby="passwordHelpInline" placeholder="Desabilitado" min="0" disabled>
-            </div>
-            <div class="col-auto">
-              <span id="passwordHelpInline" class="form-text">
-                Altura da Tampa
-              </span>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <!-- FIM TAMPA -->
-        <!-- MIOLEIRA, SERIGRAFIA E CAIXA MONTADA -->
+        <!-- SERIGRAFIA -->
         <div class="row">
-          <div class="col">
-            <div class="col-auto">
-              <label for="mio" class="col-form-label">Mioleira</label>
-            </div>
-            <div class="col-auto">
-              <input type="number" id="mio" class="form-control" aria-describedby="passwordHelpInline" min="0" placeholder="Desabilitado" disabled>
-            </div>
-            <div class="col-auto">
-              <span id="passwordHelpInline" class="form-text">
-                Contém quantas Mioleiras?
-              </span>
-            </div>
-          </div>
           <div class="col" style="padding-left: 150px;">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="serilateral">
-              <label class="form-check-label" for="serilateral">
-                Serigrafia Lateral
-              </label>
-            </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="seripezinho">
               <label class="form-check-label" for="seripezinho">
@@ -216,42 +104,14 @@
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="seritesteiro">
               <label class="form-check-label" for="seritesteiro">
-                Serigrafia Testeiro
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="seritampa">
-              <label class="form-check-label" for="seritampa">
-                Serigrafia Tampa
+                Serigrafia Base
               </label>
             </div>
           </div>
-          <div class="col">
-            <p>A caixa vai montada?</p>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadas" onclick="aparecerCaixa()" disabled>
-              <label class="form-check-label" for="cxmontadas">
-                Sim
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="cxmontadan" onclick="sumirCaixa()" disabled>
-              <label class="form-check-label" for="cxmontadan">
-                Não
-              </label>
-            </div>
-            <div id="novacaixaform">
-              <input type="text" placeholder="Tamanho da Caixa" id="cxmontAparecerCaixa" >
-            </div>
-          </div>
         </div>
-        <!-- FIM MIOLEIRA, SERIGRAFIA E CAIXA MONTADA -->
-        <div class="row" style="margin-top: 40px;">
-            <!-- AQUI ENTRA UM INPUT DO TAMANHO DA CAIXA -->
-        </div>
+        <!-- SERIGRAFIA -->
         <div class="d-grid gap-2 col-6 mx-auto">
           <button type="button" class="btn btn-outline-success" style="margin-top: 15px;" onclick="armazenar() , qtdhomens(), resumo()">Calcular</button>
-          
         </div>
         <h1 id="resuminho"></h1>
     </div>
@@ -334,59 +194,6 @@
         }
         console.log(`O tempo armazenado para a base foi de ${bn1}.`);
 
-        //LATERAL
-        var ln1 = Number(lateralCm.value)
-        if(ln1 == 0){
-            ln1 = 0
-        } else if(ln1<=100){
-            ln1 = tempoLateral
-        } else{
-          ln1 = tempoLateralMaior
-        }
-        console.log(`O tempo armazenado para a lateral foi de ${ln1}.`);
-
-        //TESTEIRO
-        var tn1 = Number(testeiroCm.value)
-        if(tn1 == 0){
-            tn1 = 0
-        } else if(tn1<=100){
-            tn1 = tempoTesteiro
-        } else{
-          tn1 = tempoTesteiroMaior
-        }
-        console.log(`O tempo armazenado para o testeiro foi de ${tn1}.`);
-
-        //TAMPA
-        var tan1 = Number(tampaCm.value)
-        if(tan1 == 0){
-            tan1 = 0
-        } else if(tan1<=100){
-            tan1 = tempoTampa
-        } else{
-          tan1 = tempoTampaMaior
-        }
-        console.log(`O tempo armazenado para a tampa foi de ${tan1}.`);
-
-        //MIOLEIRA
-        var miolei = Number(mio.value)
-        if(miolei == 0){
-          miolei = 0
-        } else if(miolei<=5){
-          miolei = tempoMioleira
-        } else{
-          miolei = tempoMioleiraMaior
-        }
-        console.log(`O tempo de mioleira é: ${miolei}.`);
-
-        //SERIGRAFIA LATERAL
-        var tempserilateral = document.getElementById('serilateral')
-        if(tempserilateral.checked){
-          tempserilateral = tempoSerigrafiaLateral
-        } else{
-          tempserilateral = 0
-        }
-        console.log(`O tempo de Serigrafia Lateral é: ${tempserilateral}.`);
-
         //SERIGRAFIA TESTEIRO
         var tempseritesteiro = document.getElementById('seritesteiro')
         if(tempseritesteiro.checked){
@@ -395,15 +202,6 @@
           tempseritesteiro = 0
         }
         console.log(`O tempo de Serigrafia Testeiro é: ${tempseritesteiro}.`);
-
-        //SERIGRAFIA TAMPA
-        var tempseritampa = document.getElementById('seritampa')
-        if(tempseritampa.checked){
-          tempseritampa = tempoSerigrafiaTampa
-        } else{
-          tempseritampa = 0
-        }
-        console.log(`O tempo de Serigrafia Tampa é: ${tempseritampa}.`);
 
         //SERIGRAFIA PÉZINHO
         var tempseripezinho = document.getElementById('seripezinho')
@@ -414,32 +212,20 @@
         }
         console.log(`O tempo de Serigrafia Pézinho é: ${tempseripezinho}.`);
 
-        //CAIXA MONTADA
-        var tempamakitmonta
-        if(cxMontadaInput.value>0 && cxMontadaInput.value<=300){
-          tempamakitmonta = tempoAmarracao + tempoCaixaMontada
-        } else if(cxMontadaInput.value>300 && cxMontadaInput.value<=500){
-          tempamakitmonta = tempoAmarracao + tempoCaixaMontadaMaior
-        } else{
-          tempamakitmonta = tempoAmarracao + tempoMontagemKit
-        }
-        console.log(`O tempo de Caixa Montada é de: ${tempamakitmonta}. Montagem kit: ${tempoMontagemKit} + tempo amarração: ${tempoAmarracao}`);
-
-
         //QTD PEZINHO
         var quantidadep = document.getElementById('qtdpezinho');
         var qtdpezinho = Number(quantidadep.value);
         var somapezinho = qtdpezinho * pn1 
-        console.log(`o tempo do pézinho é: ${somapezinho}`);
+        console.log(`o tempo do pézinho com quantidade de pézinhos incluso é: ${somapezinho}`);
 
-        
-
-        somaTotal = pn1 + bn1 + ln1 + tn1 + tan1 + somapezinho + miolei + tempserilateral + tempseritesteiro + tempseritampa + tempseripezinho
-        console.log(somaTotal) 
+        somaTotal = pn1 + bn1 + somapezinho + tempseritesteiro + tempseripezinho
+        console.log(`O tempo de produção da embalagem é ${somaTotal}`) 
       }
 
 
       function qtdhomens(){
+
+        //qtd homens pézinho
         var qtdHpezinhostr = document.getElementById('largpezinho').value
         var qtdHomensPezinho = Number(qtdHpezinhostr)
         if(qtdHomensPezinho == 0 || qtdHomensPezinho ==null || qtdHomensPezinho ==undefined){
@@ -459,40 +245,7 @@
             compbase = 2
         }
 
-        //qtd homens lateral
-        var altlateralstr = window.document.getElementById('altlateral').value;
-        var altlateral = Number(altlateralstr);
-        if(altlateral <= 0){
-            altlateral = 0
-        } else if(altlateral<=90){
-            altlateral = 1
-        } else {
-            altlateral = 2
-        }
-
-        //qtd homens testeiro
-        var alttesteirostr = window.document.getElementById('alttesteiro').value;
-        var alttesteiro = Number(alttesteirostr);
-        if(alttesteiro <= 0){
-          alttesteiro = 0
-        } else if(alttesteiro<=90){
-          alttesteiro = 1
-        } else {
-          alttesteiro = 2
-        }
-
-        //qtd homens tampa
-        var alttampastr = window.document.getElementById('alttampa').value;
-        var alttampa = Number(alttampastr);
-        if(alttampa <= 0){
-          alttampa = 0
-        } else if(alttampa<=90){
-          alttampa = 1
-        } else {
-          alttampa = 2
-        }
-
-        somaTotalHomens = alttampa + alttesteiro + altlateral + compbase + qtdHomensPezinho 
+        somaTotalHomens = compbase + qtdHomensPezinho 
         tempoDivididoPorHomens = somaTotal / somaTotalHomens
         produtividade = 48000 / tempoDivididoPorHomens
 
@@ -501,16 +254,6 @@
 
       function resumo(){
         document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / Tempo: 8 Horas / Produtividade: ${produtividade}`
-      }
-
-
-      var cxMontadaInput = document.getElementById('cxmontAparecerCaixa')
-      function aparecerCaixa(){
-        cxMontadaInput.style.display = 'block'
-      }
-
-      function sumirCaixa(){
-        cxMontadaInput.style.display = 'none'      
       }
     </script>
   </body>
