@@ -132,6 +132,7 @@
       var tempoMontagemKit = 130
       var tempoCaixaMontada = 330
       var tempoCaixaMontadaMaior = 500
+      var tempoEmborcacao = 100
       
       
       let somaTotal
@@ -150,24 +151,6 @@
       var tempoBase = 300
       var tempoBaseMaior = 400
       var baseCm = document.getElementById('largbase');
-
-      //LATERAL
-      var tempoLateral = 200
-      var tempoLateralMaior = 300
-      var lateralCm = document.getElementById('larglateral');
-
-      //TESTEIRO
-      var tempoTesteiro = 230
-      var tempoTesteiroMaior = 330
-      var testeiroCm = document.getElementById('largtesteiro');
-
-      //TAMPA
-      var tempoTampa = 300
-      var tempoTampaMaior = 400
-      var tampaCm = document.getElementById('largtampa');
-
-      //MIOLEIRA
-      var mio = document.getElementById('mio');
 
       function armazenar(){
         
@@ -218,7 +201,7 @@
         var somapezinho = qtdpezinho * pn1 
         console.log(`o tempo do pézinho com quantidade de pézinhos incluso é: ${somapezinho}`);
 
-        somaTotal = pn1 + bn1 + somapezinho + tempseritesteiro + tempseripezinho
+        somaTotal = pn1 + bn1 + somapezinho + tempseritesteiro + tempseripezinho + tempoAmarracao + tempoEmborcacao
         console.log(`O tempo de produção da embalagem é ${somaTotal}`) 
       }
 
