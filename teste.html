@@ -225,6 +225,9 @@
       //EMENDA
       var emenda = 45
 
+      //Homem para emenda
+      var qtdHomemEmenda
+
       function armazenar(){
         //PEZINHO
         var pn1 = Number(pezinhoCm.value)
@@ -316,8 +319,10 @@
 
         if(cxMontadaInput.value<=0){
           tempoEmenda = 0
+          qtdHomemEmenda = 0
         } else if(cxMontadaInput.value>0){
           tempoEmenda = emenda * cxMontadaInput.value
+          qtdHomemEmenda = 1
         }
         console.log(`O tempo de Emenda é: ${tempoEmenda}.`)
           
@@ -365,7 +370,7 @@
            qtdHomemSerigrafia = 0
         }
 
-        somaTotalHomens = compbase + qtdHomensPezinho + compassoalho + qtdHomemSerigrafia
+        somaTotalHomens = compbase + qtdHomensPezinho + compassoalho + qtdHomemSerigrafia + qtdHomemEmenda
         tempoDivididoPorHomens = somaTotal / somaTotalHomens
         produtividade = 48000 / tempoDivididoPorHomens
       } 
