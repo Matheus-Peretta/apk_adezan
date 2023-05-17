@@ -137,7 +137,6 @@
               </label>
             </div>
           </div>
-
           <!-- EMBORCAÇÃO E AMARRAÇÃO -->
           <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
@@ -153,7 +152,6 @@
               </label>
             </div>
           </div>
-
           <!-- EMENDA -->
           <div class="col">
             <p style="margin-bottom: 0px;">Contém Emenda? </p>
@@ -183,26 +181,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
     <script>      
-      var tempoMioleira = 200
-      var tempoMioleiraMaior = 500
-      var tempoSerigrafiaLateral = 100
-      
-      var tempoSerigrafiaTampa = 30
-      
-      
-      var tempoMontagemKit = 130
-      var tempoCaixaMontada = 330
-      var tempoCaixaMontadaMaior = 500
-      
-      
       
       let somaTotal
       let produtividade
       let somaTotalHomens
-      let passandoParaNumMin
-      let passandoParaNumSeg
-      
-      
+  
+      var cxMontadaInput = document.getElementById('cxmontAparecerCaixa')
+
       //PEZINHO
       var tempoPezinho = 120
       var tempoPezinhoMaior = 200
@@ -219,25 +204,28 @@
       var assoalhoCm = document.getElementById('largassoalho');
 
       //SERIGRAFIA
-      var tempoSerigrafiaTesteiro = 130
+      var tempoSerigrafiaPezinho = 130 
       var tempoSerigrafiaBase = 130
-      var tempseritesteiro = document.getElementById('seritesteiro')
-      var tempseripezinho = document.getElementById('seripezinho')
+      var qtdHomemSerigrafia
+      
+      
 
       //AMARRAÇÃO
       var tempoAmarracao = 130
-      var tempAmarracao = document.getElementById('iamarracao')
+      
 
       //EMBORCAÇÃO
       var tempoEmborcacao = 130
-      var tempEmborcacao = document.getElementById('iemborcacao')
+     
 
       //BANHEIRO e CAFÉ
       var banheiro = 1000
       var cafe = 500
 
+      //EMENDA
+      var emenda = 45
+
       function armazenar(){
-        
         //PEZINHO
         var pn1 = Number(pezinhoCm.value)
         if(pn1 == 0){
@@ -266,35 +254,47 @@
             ass = 0
         } else if(ass<=100){
             ass = tempoAssoalho
-        } else if(ass<=250){
-          ass = tempoAssoalhoMaior
+        } else if(ass>250){
+            ass = tempoAssoalhoMaior
         }
         console.log(`O tempo armazenado para o assoalho foi de ${ass}.`);
 
-        //SERIGRAFIA TESTEIRO
-        
+        //SERIGRAFIA BASE
+        var tempseritesteiro = document.getElementById('seritesteiro') //base
         if(tempseritesteiro.checked){
-          tempseritesteiro = tempoSerigrafiaTesteiro
+          tempseritesteiro = tempoSerigrafiaBase
+          qtdHomemSerigrafia = 1
         } else{
           tempseritesteiro = 0
+          qtdHomemSerigrafia = 0
         }
         console.log(`O tempo de Serigrafia Testeiro é: ${tempseritesteiro}.`);
 
         //SERIGRAFIA PÉZINHO
+        var tempseripezinho = document.getElementById('seripezinho')
         if(tempseripezinho.checked){
-          tempseripezinho = tempoSerigrafiaBase
+          tempseripezinho = tempoSerigrafiaPezinho
+          qtdHomemSerigrafia = 1
         } else{
           tempseripezinho = 0
+          qtdHomemSerigrafia = 0
         }
         console.log(`O tempo de Serigrafia Pézinho é: ${tempseripezinho}.`);
 
         //QTD PEZINHO
         var quantidadep = document.getElementById('qtdpezinho');
         var qtdpezinho = Number(quantidadep.value);
-        var somapezinho = qtdpezinho * pn1 
+        var somapezinho 
+        if(pn1 == 0){
+          somapezinho = 0
+        }else if(qtdpezinho == 1){
+          somapezinho = pn1
+        } else if(qtdpezinho>1){
+          somapezinho = (qtdpezinho * pn1) - 120
+        }
         console.log(`o tempo do pézinho com quantidade de pézinhos incluso é: ${somapezinho}`);
-
         //TEMPO AMARRAÇÃO
+        var tempAmarracao = document.getElementById('iamarracao')
         if(tempAmarracao.checked){
           tempAmarracao = tempoAmarracao
         } else{
@@ -303,6 +303,7 @@
         console.log(`O tempo de Amarração é: ${tempAmarracao}.`);
         
         //TEMPO EMBORCAÇÃO
+        var tempEmborcacao = document.getElementById('iemborcacao')
         if(tempEmborcacao.checked){
           tempEmborcacao = tempoEmborcacao
         } else{
@@ -310,17 +311,26 @@
         }
         console.log(`O tempo de Emborcação é: ${tempEmborcacao}.`);
 
-        somaTotal = pn1 + bn1 + somapezinho + tempseritesteiro + tempseripezinho + tempAmarracao + tempoEmborcacao + ass + banheiro + cafe
+        //TEMPO EMENDA
+        var tempoEmenda
+
+        if(cxMontadaInput.value<=0){
+          tempoEmenda = 0
+        } else if(cxMontadaInput.value>0){
+          tempoEmenda = emenda * cxMontadaInput.value
+        }
+        console.log(`O tempo de Emenda é: ${tempoEmenda}.`)
+          
+
+        somaTotal = tempEmborcacao + tempAmarracao + somapezinho + tempseripezinho + tempseritesteiro + ass + bn1 + pn1 + tempoEmenda + banheiro + cafe
         console.log(`O tempo de produção da embalagem é ${somaTotal}`)
       }
 
-
       function qtdhomens(){
-
         //qtd homens pézinho
-        var qtdHpezinhostr = document.getElementById('largpezinho').value
-        var qtdHomensPezinho = Number(qtdHpezinhostr)
-        if(qtdHomensPezinho == 0 || qtdHomensPezinho ==null || qtdHomensPezinho ==undefined){
+        var qtdHpezinhostr = window.document.getElementById('largpezinho').value;
+        var qtdHomensPezinho = Number(qtdHpezinhostr);
+        if(qtdHomensPezinho <= 0){
           qtdHomensPezinho = 0
         } else{
           qtdHomensPezinho = 1
@@ -349,8 +359,7 @@
         }
 
         //homem serigrafia
-        let qtdHomemSerigrafia
-        if(tempseripezinho.checked || tempseritesteiro.checked){
+        if(qtdHomemSerigrafia>=1){
            qtdHomemSerigrafia = 1
         } else{
            qtdHomemSerigrafia = 0
@@ -365,14 +374,14 @@
       function resumo(){
         document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / Tempo: 8 Horas / Produtividade: ${produtividade}`
       }
-
-      var cxMontadaInput = document.getElementById('cxmontAparecerCaixa')
+      
       function aparecerCaixa(){
         cxMontadaInput.style.display = 'block'
       }
 
       function sumirCaixa(){
-        cxMontadaInput.style.display = 'none'      
+        cxMontadaInput.style.display = 'none'
+        tempoEmenda = 0      
       }
     </script>
   </body>

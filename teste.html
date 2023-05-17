@@ -137,7 +137,6 @@
               </label>
             </div>
           </div>
-
           <!-- EMBORCAÇÃO E AMARRAÇÃO -->
           <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
@@ -153,7 +152,6 @@
               </label>
             </div>
           </div>
-
           <!-- EMENDA -->
           <div class="col">
             <p style="margin-bottom: 0px;">Contém Emenda? </p>
@@ -188,6 +186,8 @@
       let produtividade
       let somaTotalHomens
   
+      var cxMontadaInput = document.getElementById('cxmontAparecerCaixa')
+
       //PEZINHO
       var tempoPezinho = 120
       var tempoPezinhoMaior = 200
@@ -207,16 +207,16 @@
       var tempoSerigrafiaPezinho = 130 
       var tempoSerigrafiaBase = 130
       var qtdHomemSerigrafia
-      var tempseritesteiro = document.getElementById('seritesteiro') //base
-      var tempseripezinho = document.getElementById('seripezinho')
+      
+      
 
       //AMARRAÇÃO
       var tempoAmarracao = 130
-      var tempAmarracao = document.getElementById('iamarracao')
+      
 
       //EMBORCAÇÃO
       var tempoEmborcacao = 130
-      var tempEmborcacao = document.getElementById('iemborcacao')
+     
 
       //BANHEIRO e CAFÉ
       var banheiro = 1000
@@ -226,7 +226,6 @@
       var emenda = 45
 
       function armazenar(){
-        
         //PEZINHO
         var pn1 = Number(pezinhoCm.value)
         if(pn1 == 0){
@@ -260,7 +259,8 @@
         }
         console.log(`O tempo armazenado para o assoalho foi de ${ass}.`);
 
-        //SERIGRAFIA BASE 
+        //SERIGRAFIA BASE
+        var tempseritesteiro = document.getElementById('seritesteiro') //base
         if(tempseritesteiro.checked){
           tempseritesteiro = tempoSerigrafiaBase
           qtdHomemSerigrafia = 1
@@ -271,22 +271,30 @@
         console.log(`O tempo de Serigrafia Testeiro é: ${tempseritesteiro}.`);
 
         //SERIGRAFIA PÉZINHO
+        var tempseripezinho = document.getElementById('seripezinho')
         if(tempseripezinho.checked){
           tempseripezinho = tempoSerigrafiaPezinho
           qtdHomemSerigrafia = 1
         } else{
           tempseripezinho = 0
-          qtdHomemSerigrafia = 1
+          qtdHomemSerigrafia = 0
         }
         console.log(`O tempo de Serigrafia Pézinho é: ${tempseripezinho}.`);
 
         //QTD PEZINHO
         var quantidadep = document.getElementById('qtdpezinho');
         var qtdpezinho = Number(quantidadep.value);
-        var somapezinho = qtdpezinho * pn1 
+        var somapezinho 
+        if(pn1 == 0){
+          somapezinho = 0
+        }else if(qtdpezinho == 1){
+          somapezinho = pn1
+        } else if(qtdpezinho>1){
+          somapezinho = (qtdpezinho * pn1) - 120
+        }
         console.log(`o tempo do pézinho com quantidade de pézinhos incluso é: ${somapezinho}`);
-
         //TEMPO AMARRAÇÃO
+        var tempAmarracao = document.getElementById('iamarracao')
         if(tempAmarracao.checked){
           tempAmarracao = tempoAmarracao
         } else{
@@ -295,6 +303,7 @@
         console.log(`O tempo de Amarração é: ${tempAmarracao}.`);
         
         //TEMPO EMBORCAÇÃO
+        var tempEmborcacao = document.getElementById('iemborcacao')
         if(tempEmborcacao.checked){
           tempEmborcacao = tempoEmborcacao
         } else{
@@ -304,6 +313,7 @@
 
         //TEMPO EMENDA
         var tempoEmenda
+
         if(cxMontadaInput.value<=0){
           tempoEmenda = 0
         } else if(cxMontadaInput.value>0){
@@ -316,9 +326,7 @@
         console.log(`O tempo de produção da embalagem é ${somaTotal}`)
       }
 
-
       function qtdhomens(){
-
         //qtd homens pézinho
         var qtdHpezinhostr = window.document.getElementById('largpezinho').value;
         var qtdHomensPezinho = Number(qtdHpezinhostr);
@@ -366,8 +374,7 @@
       function resumo(){
         document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / Tempo: 8 Horas / Produtividade: ${produtividade}`
       }
-
-      var cxMontadaInput = document.getElementById('cxmontAparecerCaixa')
+      
       function aparecerCaixa(){
         cxMontadaInput.style.display = 'block'
       }
