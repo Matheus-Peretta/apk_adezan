@@ -13,3 +13,17 @@ h1#resuminho{
 input#cxmontAparecerCaixa{
     display: none;
 }
+.botaoPrimeiraTela{
+    display: block; 
+    margin: 0px auto 10px auto; 
+    box-shadow: 1px 1px 18px rgba(0, 0, 0, 0.415); 
+    background-color: rgb(175, 203, 175); 
+    border: 3px solid rgb(31, 101, 31); 
+    color: rgb(31, 101, 31); 
+    border-radius: 8px;
+}
+.botaoPrimeiraTela:hover{
+    background-color: rgb(46, 188, 46);
+    color: rgb(255, 255, 255);
+    border: 3px solid rgb(46, 188, 46);
+}
