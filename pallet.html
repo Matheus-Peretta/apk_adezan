@@ -23,13 +23,13 @@
             <div class="form-check" style="margin-top: 30px;">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="skid">
               <label class="form-check-label" for="skid">
-                Pézinho com Scid
+                Pézinho com Squid
               </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="semskid">
               <label class="form-check-label" for="semskid">
-                Pézinho sem Scid
+                Pézinho sem Squid
               </label>
             </div>
           </div>
@@ -221,7 +221,7 @@
           
 
         somaTotal = tempEmborcacao + tempAmarracao + somapezinho + tempseripezinho + tempseritesteiro + bn1
-        continha = somaTotal*0.12
+        continha = somaTotal*0.3
         somaTotal += continha
         console.log(`O tempo de produção da embalagem é ${somaTotal}. Continha: ${continha}`)
       }
@@ -263,7 +263,7 @@
       } 
 
       function resumo(){
-        document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / Tempo: 8 Horas / Produtividade: ${produtividade}`
+        document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / 8 Horas / Produtividade: ${produtividade}`
       }
     </script>
   </body>
