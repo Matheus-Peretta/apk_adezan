@@ -32,6 +32,12 @@
                 Pézinho sem Squid
               </label>
             </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="naoPezinho" >
+              <label class="form-check-label" for="naoPezinho">
+                Não contém Pézinho
+              </label>
+            </div>
           </div>
           <div class="col">
             <div class="col-auto">
@@ -132,7 +138,7 @@
       var pezinhoCm = window.document.getElementById('largpezinho')
 
       //BASE
-      var tempoBase = 300
+      var tempoBase = 200
       var tempoBaseMaior = 400
       
 
@@ -151,16 +157,22 @@
       var banheiro = 1000
       var cafe = 500
 
+      
+
       function armazenar(){
         //PEZINHO
         var quantidadep = document.getElementById('qtdpezinho');
         var qtdpezinho = Number(quantidadep.value);
         var skid = document.getElementById('skid'); 
         var semSkid = document.getElementById('semskid');
-        var somapezinho 
-        if(qtdpezinho == 0){
+        var semPezinho = document.getElementById('naoPezinho');
+        var somapezinho
+        
+        if(semPezinho.checked){
           somapezinho = 0
-        }else if(qtdpezinho >= 1 && skid.checked){
+        } else if(qtdpezinho == 0){
+          somapezinho = 0
+        } else if(qtdpezinho >= 1 && skid.checked){
           somapezinho = qtdpezinho*tempoPezinho
         } else if(qtdpezinho>=1 && semSkid.checked){
           somapezinho = qtdpezinho*tempoPezinhoSemScid
