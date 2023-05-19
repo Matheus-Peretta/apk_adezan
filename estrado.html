@@ -174,15 +174,15 @@
       var assoalhoCm = document.getElementById('compassoalho');
 
       //SERIGRAFIA
-      var tempoSerigrafiaPezinho = 130 
-      var tempoSerigrafiaBase = 130
+      var tempoSerigrafiaPezinho = 200 
+      var tempoSerigrafiaBase = 200
       var qtdHomemSerigrafia
 
       //AMARRAÇÃO
-      var tempoAmarracao = 130
+      var tempoAmarracao = 200
 
       //EMBORCAÇÃO
-      var tempoEmborcacao = 130
+      var tempoEmborcacao = 200
 
       //BANHEIRO e CAFÉ
       var banheiro = 1000
@@ -215,7 +215,11 @@
         if(ass == 0){
             ass = 0
         } else if(ass<=240){
-            ass = tempoAssoalho
+            if(ass<=100){
+              ass = tempoAssoalho
+            } else if(ass<=200){
+              ass = ass*2
+            }
         } else if(ass>250){
             if(ass>=200 && ass<=299){
               ass = tempoAssoalho * 4
@@ -307,7 +311,7 @@
           
 
         somaTotal = tempEmborcacao + tempAmarracao + somapezinho + tempseripezinho + tempseritesteiro + ass + tempoEmenda
-        somaTotalFinal = somaTotal * 0.3
+        somaTotalFinal = somaTotal * 0.2
         somaTotal += somaTotalFinal
         console.log(`O tempo de produção da embalagem é ${somaTotal}`)
       }
