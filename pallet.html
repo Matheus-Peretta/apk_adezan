@@ -63,7 +63,7 @@
         <div class="row" style="margin-top: 10px;">
           <div class="col">
             <div class="col-auto">
-              <label for="largbase" class="col-form-label">Base</label>
+              <label for="largbase" class="col-form-label">Base - centímetros</label>
             </div>
             <div class="col-auto">
               <input type="number" id="largbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
@@ -76,7 +76,7 @@
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="compbase" class="col-form-label">Base</label>
+              <label for="compbase" class="col-form-label">Base - centímetros</label>
             </div>
             <div class="col-auto">
               <input type="number" id="compbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
@@ -136,28 +136,28 @@
       let somaTotalHomens
 
       //PEZINHO
-      var tempoPezinho = 50
-      var tempoPezinhoSemScid = 30
+      var tempoPezinho = 0.34
+      var tempoPezinhoSemScid = 0.08
       var pezinhoCm = window.document.getElementById('largpezinho')
 
       //BASE
-      var tempoBase = 100
-      var tempoBaseMaior = 130
+      var tempoBase = 1
+      var tempoBaseMaior = 1
       
 
       //SERIGRAFIA
-      var tempoSerigrafiaPezinho = 40 
-      var tempoSerigrafiaBase = 40
+      var tempoSerigrafiaPezinho = 1 
+      var tempoSerigrafiaBase = 1
       var qtdHomemSerigrafia
       
       //AMARRAÇÃO
-      var tempoAmarracao = 130
+      var tempoAmarracao = 0.5
       
       //EMBORCAÇÃO
-      var tempoEmborcacao = 100
+      var tempoEmborcacao = 0.5
 
       //BANHEIRO e CAFÉ
-      var banheiro = 1000
+      var banheiro = 0.7
       var cafe = 500
 
       var semPezinho = document.getElementById('naopezinho');
@@ -172,19 +172,15 @@
         var somapezinho
         
         if(semPezinho.checked){
-          produtividade = 150
           qtdpezinho = 0
         } else if(qtdpezinho == 0){
-          produtividade = 150
           qtdpezinho = 0
         } else if(qtdpezinho >= 1 && skid.checked){
-          produtividade = 120
-          qtdpezinho = tempoPezinho
+          qtdpezinho = qtdpezinho*tempoPezinho
         } else if(qtdpezinho>=1 && semSkid.checked){
-          produtividade = 120
-          qtdpezinho = tempoPezinhoSemScid
+          qtdpezinho = tempoPezinhoSemScid*qtdpezinho
         }
-        console.log(`o tempo do pézinho incluso é: ${produtividade}`);
+        console.log(`o tempo do pézinho incluso é: ${qtdpezinho}`);
         
         //BASE    
         var baseCm = document.getElementById('largbase');
@@ -240,7 +236,9 @@
         console.log(`O tempo de Emborcação é: ${tempEmborcacao}.`);
   
         somaTotal = tempEmborcacao + tempAmarracao + tempseripezinho + tempseritesteiro + bn1 + qtdpezinho
-        console.log(`O tempo de produção da embalagem é ${somaTotal}.`)
+        conta = 60/somaTotal
+        resultado = conta*8
+        console.log(`O tempo de produção da embalagem é ${somaTotal}. Produtividade: ${resultado}`)
       }
 
       function qtdhomens(){
@@ -278,7 +276,7 @@
       } 
 
       function resumo(){
-        document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / 8 Horas / Produtividade: ${Math.round(produtividade)}`
+        document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / 8 Horas / Produtividade: ${Math.round(resultado)}`
       }
     </script>
   </body>
