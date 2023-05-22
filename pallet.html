@@ -136,13 +136,13 @@
       let somaTotalHomens
 
       //PEZINHO
-      var tempoPezinho = 0.34
-      var tempoPezinhoSemScid = 0.08
+      var tempoPezinho = 0.28
+      var tempoPezinhoSemScid = 0.25
       var pezinhoCm = window.document.getElementById('largpezinho')
 
       //BASE
       var tempoBase = 1
-      var tempoBaseMaior = 1
+      var tempoBaseMaior = 1.2
       
 
       //SERIGRAFIA
@@ -188,10 +188,12 @@
         if(bn1 == 0){
             bn1 = 0
             window.alert('Digite a largura da base')
+        } else if(bn1<=100 && semPezinho.checked){
+            bn1 = tempoBaseMaior
         } else if(bn1<=100){
             bn1 = tempoBase
-        } else{
-          bn1 = tempoBaseMaior
+        } else {
+            bn1 = tempoBase
         }
         console.log(`O tempo armazenado para a base foi de ${bn1}.`);
 
