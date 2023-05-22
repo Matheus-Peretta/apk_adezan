@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cálculo Produtividade</title>
+    <title>PTF (Product Time Finder)</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="img/cronometro2.png" type="image/x-icon">
@@ -13,14 +13,10 @@
     <div class="container" style="background-color: rgb(175, 203, 175); padding: 15px; border-radius: 5px;">
         <nav class="navbar bg-body-tertiary" style="margin: -15px -15px 10px -15px;">
             <div class="container-fluid">
-                <img src="img/logo.png" alt="Logo" width="150" height="150" class="d-inline-block align-text-top">
-                <h1 style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.482);">Cálculo Produtividade</h1>
+                <img src="img/logo.png" alt="Logo" width="100" height="100" class="d-inline-block align-text-top">
+                <h1>Product Time Finder</h1>
             </div>
         </nav>
-        <div class="cabeca">
-          <a href="index.html"><img src="img/botao-voltar2.png" alt="Botão Voltar" id="botaovoltar"></a>
-          <h2 id="titulocabeca">Pallet</h2>
-        </div>
         <!-- INÍCIO PÉZINHO -->
         <div class="row">
           <div class="col">
@@ -38,7 +34,7 @@
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="naopezinho" >
-              <label class="form-check-label" for="naopezinho">
+              <label class="form-check-label" for="naoPezinho">
                 Não contém Pézinho
               </label>
             </div>
@@ -136,25 +132,26 @@
       let somaTotalHomens
 
       //PEZINHO
-      var tempoPezinho = 50
-      var tempoPezinhoSemScid = 30
+      var tempoPezinho = 130
+      var tempoPezinhoMaior = 300
+      var tempoPezinhoSemScid = 100
       var pezinhoCm = window.document.getElementById('largpezinho')
 
       //BASE
-      var tempoBase = 100
-      var tempoBaseMaior = 130
+      var tempoBase = 330
+      var tempoBaseMaior = 430
       
 
       //SERIGRAFIA
-      var tempoSerigrafiaPezinho = 40 
-      var tempoSerigrafiaBase = 40
+      var tempoSerigrafiaPezinho = 200 
+      var tempoSerigrafiaBase = 200
       var qtdHomemSerigrafia
       
       //AMARRAÇÃO
       var tempoAmarracao = 130
       
       //EMBORCAÇÃO
-      var tempoEmborcacao = 100
+      var tempoEmborcacao = 130
 
       //BANHEIRO e CAFÉ
       var banheiro = 1000
@@ -172,26 +169,23 @@
         var somapezinho
         
         if(semPezinho.checked){
-          produtividade = 150
-          qtdpezinho = 0
+          somapezinho = 0
         } else if(qtdpezinho == 0){
-          produtividade = 150
-          qtdpezinho = 0
+          somapezinho = 0
         } else if(qtdpezinho >= 1 && skid.checked){
-          produtividade = 120
-          qtdpezinho = tempoPezinho
+          somapezinho = qtdpezinho*tempoPezinho
         } else if(qtdpezinho>=1 && semSkid.checked){
-          produtividade = 120
-          qtdpezinho = tempoPezinhoSemScid
+          somapezinho = qtdpezinho*tempoPezinhoSemScid
         }
-        console.log(`o tempo do pézinho incluso é: ${produtividade}`);
+        console.log(`o tempo do pézinho incluso é: ${somapezinho}`);
         
         //BASE    
         var baseCm = document.getElementById('largbase');
         var bn1 = Number(baseCm.value)
         if(bn1 == 0){
             bn1 = 0
-            window.alert('Digite a largura da base')
+        } else if(bn1<=100 && semPezinho.checked){
+            bn1 = 175
         } else if(bn1<=100){
             bn1 = tempoBase
         } else{
@@ -201,7 +195,10 @@
 
         //SERIGRAFIA BASE
         var tempseritesteiro = document.getElementById('seritesteiro') //base
-        if(tempseritesteiro.checked){
+        if(tempseritesteiro.checked && semPezinho.checked){
+          tempseritesteiro = 100
+          qtdHomemSerigrafia = 1
+        } else if(tempseritesteiro.checked){
           tempseritesteiro = tempoSerigrafiaBase
           qtdHomemSerigrafia = 1
         } else{
@@ -212,7 +209,10 @@
 
         //SERIGRAFIA PÉZINHO
         var tempseripezinho = document.getElementById('seripezinho')
-        if(tempseripezinho.checked){
+        if(tempseripezinho.checked && semPezinho.checked){
+          tempseripezinho = 100
+          qtdHomemSerigrafia = 1
+        } else if(tempseripezinho.checked){
           tempseripezinho = tempoSerigrafiaPezinho
           qtdHomemSerigrafia = 1
         } else{
@@ -238,9 +238,12 @@
           tempEmborcacao = 0
         }
         console.log(`O tempo de Emborcação é: ${tempEmborcacao}.`);
-  
-        somaTotal = tempEmborcacao + tempAmarracao + tempseripezinho + tempseritesteiro + bn1 + qtdpezinho
-        console.log(`O tempo de produção da embalagem é ${somaTotal}.`)
+          
+
+        somaTotal = tempEmborcacao + tempAmarracao + somapezinho + tempseripezinho + tempseritesteiro + bn1
+        continha = somaTotal*0.2
+        somaTotal += continha
+        console.log(`O tempo de produção da embalagem é ${somaTotal}. Continha: ${continha}`)
       }
 
       function qtdhomens(){
@@ -254,7 +257,7 @@
         }
 
         //qtd homens base
-        var compbasestr = window.document.getElementById('largbase')
+        var compbasestr = window.document.getElementById('compbase')
         var compbase = Number(compbasestr.value)
         if(compbase <= 0){
           compbase = 0
@@ -273,7 +276,9 @@
            qtdHomemSerigrafia = 0
         }
 
-        somaTotalHomens = compbase + qtdHomensPezinho + qtdHomemSerigrafia 
+        somaTotalHomens = compbase + qtdHomensPezinho + qtdHomemSerigrafia
+        tempoDivididoPorHomens = somaTotal / somaTotalHomens
+        produtividade = 48000 / tempoDivididoPorHomens
         console.log(`qtd H pézinho: ${qtdHomensPezinho}. qtd H base: ${compbase}. qtd H serigrafia: ${qtdHomemSerigrafia}`)
       } 
 
