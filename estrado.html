@@ -211,7 +211,9 @@
         var qtdpezinho = Number(quantidadep.value);
         var skid = document.getElementById('skid'); 
         var semSkid = document.getElementById('semskid');
+
         var somapezinho 
+
         if(semPezinho.checked){
           qtdpezinho = 0
         } else if(qtdpezinho == 0){
@@ -323,11 +325,11 @@
         console.log(`tempo assoalho: ${ass}`)
           
 
-        somaTotal = tempEmborcacao + tempAmarracao + somapezinho + tempseripezinho + tempseritesteiro + ass + tempoEmenda
+        somaTotal = tempEmborcacao + tempAmarracao + qtdpezinho + tempseripezinho + tempseritesteiro + ass + tempoEmenda
         somaTotalFinal = somaTotal * 0.2
         somaTotal += somaTotalFinal
-        conta = 60/somaTotal
-        resultado = conta*8
+        conta = 60 / somaTotal
+        resultado = conta * 8
         console.log(`O tempo de produção da embalagem é ${somaTotal} e a produtividade é ${resultado}`)
       }
 
