@@ -173,36 +173,37 @@
       var cxMontadaInput = document.getElementById('cxmontAparecerCaixa')
 
       //PEZINHO
-      var tempoPezinho = 130
-      var tempoPezinhoMaior = 200
-      var tempoPezinhoSemScid = 100
+      var tempoPezinho = 0.28
+      var tempoPezinhoSemScid = 0.25
       var pezinhoCm = window.document.getElementById('largpezinho')
 
       //ASSOALHO
-      var tempoAssoalho = 100
-      var tempoAssoalhoMaior = 200
-      var assoalhoCm = document.getElementById('compassoalho');
+      var tempoAssoalho = 1
+      var tempoAssoalhoMaior = 2
+      var assoalhoCm = document.getElementById('compassoalho')
 
       //SERIGRAFIA
-      var tempoSerigrafiaPezinho = 200 
-      var tempoSerigrafiaBase = 200
+      var tempoSerigrafiaPezinho = 1
+      var tempoSerigrafiaBase = 1
       var qtdHomemSerigrafia
 
       //AMARRAÇÃO
-      var tempoAmarracao = 200
+      var tempoAmarracao = 0.5
 
       //EMBORCAÇÃO
-      var tempoEmborcacao = 200
+      var tempoEmborcacao = 0.5
 
       //BANHEIRO e CAFÉ
-      var banheiro = 1000
-      var cafe = 500
+      var banheiro = 10
+      var cafe = 5
 
       //EMENDA
-      var emenda = 45
+      var emenda = 0.45
 
       //Homem para emenda
       var qtdHomemEmenda
+
+      var semPezinho = document.getElementById('naopezinho');
 
       function armazenar(){
         //PEZINHO
@@ -211,14 +212,16 @@
         var skid = document.getElementById('skid'); 
         var semSkid = document.getElementById('semskid');
         var somapezinho 
-        if(qtdpezinho == 0){
-          somapezinho = 0
-        }else if(qtdpezinho >= 1 && skid.checked){
-          somapezinho = qtdpezinho*tempoPezinho
+        if(semPezinho.checked){
+          qtdpezinho = 0
+        } else if(qtdpezinho == 0){
+          qtdpezinho = 0
+        } else if(qtdpezinho >= 1 && skid.checked){
+          qtdpezinho = qtdpezinho*tempoPezinho
         } else if(qtdpezinho>=1 && semSkid.checked){
-          somapezinho = qtdpezinho*tempoPezinhoSemScid
+          qtdpezinho = tempoPezinhoSemScid*qtdpezinho
         }
-        console.log(`o tempo do pézinho incluso é: ${somapezinho}`);
+        console.log(`o tempo do pézinho incluso é: ${qtdpezinho}`);
 
         //ASSOALHO    
         var ass = Number(assoalhoCm.value)
@@ -262,7 +265,7 @@
           tempseritesteiro = 0
           qtdHomemSerigrafia = 0
         }
-        console.log(`O tempo de Serigrafia Testeiro é: ${tempseritesteiro}.`);
+        console.log(`O tempo de Serigrafia Base é: ${tempseritesteiro}.`);
 
         //SERIGRAFIA PÉZINHO
         var tempseripezinho = document.getElementById('seripezinho')
@@ -300,7 +303,7 @@
           tempoEmenda = 0
           qtdHomemEmenda = 0
         } else if(cxMontadaInput.value>0){
-          tempoEmenda = emenda * cxMontadaInput.value
+          tempoEmenda = cxMontadaInput.value * emenda
           qtdHomemEmenda = 1
         }
 
@@ -317,13 +320,15 @@
         if(emendaAssoalho.checked){
           ass = ass*2
         }
-        console.log(`tempo assoalho com dobra: ${ass}`)
+        console.log(`tempo assoalho: ${ass}`)
           
 
         somaTotal = tempEmborcacao + tempAmarracao + somapezinho + tempseripezinho + tempseritesteiro + ass + tempoEmenda
         somaTotalFinal = somaTotal * 0.2
         somaTotal += somaTotalFinal
-        console.log(`O tempo de produção da embalagem é ${somaTotal}`)
+        conta = 60/somaTotal
+        resultado = conta*8
+        console.log(`O tempo de produção da embalagem é ${somaTotal} e a produtividade é ${resultado}`)
       }
 
       function qtdhomens(){
@@ -355,12 +360,10 @@
         }
 
         somaTotalHomens = qtdHomensPezinho + compassoalho + qtdHomemSerigrafia + qtdHomemEmenda
-        tempoDivididoPorHomens = somaTotal / somaTotalHomens
-        produtividade = 48000 / tempoDivididoPorHomens
       } 
 
       function resumo(){
-        document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / 8 Horas / Produtividade: ${Math.round(produtividade)}`
+        document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / 8 Horas / Produtividade: ${Math.round(resultado)}`
 
       }
       
