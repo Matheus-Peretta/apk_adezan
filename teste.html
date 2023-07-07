@@ -130,22 +130,22 @@
       var cxMontadaInput = document.getElementById('cxmontAparecerCaixa') // qtd de emendas
 
       //ASSOALHO
-      var tempoAssoalho = 5.9
+      var tempoAssoalho = 4.6
       var tempoAssoalhoMaior = 2
       var assoalhoCm = document.getElementById('compassoalho')
 
       //SERIGRAFIA
-      var tempoSerigrafiaBase = 1
+      var tempoSerigrafiaBase = 2
       var qtdHomemSerigrafia
 
       //AMARRAÇÃO
-      var tempoAmarracao = 0.5
+      var tempoAmarracao = 1.5
 
       //EMBORCAÇÃO
-      var tempoEmborcacao = 0.5
+      var tempoEmborcacao = 1.5
 
       //EMENDA
-      var emenda = 0.45
+      var emenda = 1
 
       //Homem para emenda
       var qtdHomemEmenda
@@ -158,10 +158,12 @@
             ass = 0
         } else if(ass<=200){
             ass = tempoAssoalho
-        } else if(ass<=300){
-            if(ass>=201 && ass<=400){
-              ass = tempoAssoalho * 3
-            } 
+        } else if(ass>=201 && ass<=400){
+            ass = tempoAssoalho * 3
+        } else if(ass>=401 && ass<=500){
+            ass = tempoAssoalho * 4
+        } else if(ass>=501){
+            ass = tempoAssoalho * 5
         }
         console.log(`O tempo armazenado para o assoalho foi de ${ass}.`);
 
@@ -216,14 +218,12 @@
         //DOBRANDO EMENDA ASSOALHO 
         var emendaAssoalho = document.getElementById('assoalhoEmendaS')
         if(emendaAssoalho.checked){
-          ass = ass*2
+          ass = ass*1.2
         }
         console.log(`tempo assoalho: ${ass}`)
           
 
-        somaTotal = tempEmborcacao + tempAmarracao + tempseritesteiro + tempoEmenda
-        somaTotalFinal = somaTotal * 0.2
-        somaTotal += somaTotalFinal
+        somaTotal = tempEmborcacao + tempAmarracao + tempseritesteiro + tempoEmenda + ass
         conta = 60 / somaTotal
         resultado = conta * 8
         console.log(`O tempo de produção da embalagem é ${somaTotal} e a produtividade é ${resultado}`)
