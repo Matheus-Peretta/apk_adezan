@@ -1,4 +1,4 @@
-<!-- RASCUNHO VERSÃO ANTERIOR DO ESTRADO -->
+<!-- RASCUNHO ESTRADO VERSÃO ANTERIOR -->
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -146,7 +146,7 @@
       var tempoEmborcacao = 1.5
 
       //EMENDA
-      var emenda = 0.4
+      var emenda = 1
 
       //Homem para emenda
       var qtdHomemEmenda
@@ -163,7 +163,7 @@
             ass = tempoAssoalho * 3
         } else if(ass>=401 && ass<=500){
             ass = tempoAssoalho * 4
-        } else if(ass>501){
+        } else if(ass>=501){
             ass = tempoAssoalho * 5
         }
         console.log(`O tempo armazenado para o assoalho foi de ${ass}.`);

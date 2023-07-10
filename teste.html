@@ -25,21 +25,6 @@
         <!-- INÍCIO ASSOALHO -->
         <div class="row" style="margin-top: 10px;">
           <div class="col">
-            <div class="form-check" style="margin-top: 10px;">
-              <label style="display: block; margin-top: 0px;">Contém emenda no assoalho? </label>
-              <input class="form-check-input" type="radio" name="flexRadioDefaultAssoalho" id="assoalhoEmendaS">
-              <label class="form-check-label" for="assoalhoEmendaS">
-                Sim
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefaultAssoalho" id="assoalhoEmendaN">
-              <label class="form-check-label" for="assoalhoEmendaN">
-                Não
-              </label>
-            </div>
-          </div>
-          <div class="col">
             <div class="col-auto">
               <label for="largassoalho" class="col-form-label">Base</label>
             </div>
@@ -54,7 +39,7 @@
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="compassoalho" class="col-form-label">Assoalho</label>
+              <label for="compassoalho" class="col-form-label">Base</label>
             </div>
             <div class="col-auto">
               <input type="number" id="compassoalho" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
@@ -74,28 +59,13 @@
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="seritesteiro">
               <label class="form-check-label" for="seritesteiro">
-                Serigrafia Base
-              </label>
-            </div>
-          </div>
-          <!-- EMBORCAÇÃO E AMARRAÇÃO -->
-          <div class="col" style="padding-left: 90px; margin-top: 15px;">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="iemborcacao">
-              <label class="form-check-label" for="iemborcacao">
-                Emborcação
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="iamarracao">
-              <label class="form-check-label" for="iamarracao">
-                Amarração
+                Serigrafia
               </label>
             </div>
           </div>
           <!-- EMENDA -->
           <div class="col">
-            <p style="margin-bottom: 0px;">Contém emenda no toco? </p>
+            <p style="margin-bottom: 0px;">Contém emenda? </p>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadas" onclick="aparecerCaixa()">
               <label class="form-check-label" for="cxmontadas">
@@ -130,19 +100,13 @@
       var cxMontadaInput = document.getElementById('cxmontAparecerCaixa') // qtd de emendas
 
       //ASSOALHO
-      var tempoAssoalho = 4.6
+      var tempoAssoalho = 7
       var tempoAssoalhoMaior = 2
       var assoalhoCm = document.getElementById('compassoalho')
 
       //SERIGRAFIA
       var tempoSerigrafiaBase = 2
       var qtdHomemSerigrafia
-
-      //AMARRAÇÃO
-      var tempoAmarracao = 1.5
-
-      //EMBORCAÇÃO
-      var tempoEmborcacao = 1.5
 
       //EMENDA
       var emenda = 1
@@ -159,11 +123,11 @@
         } else if(ass<=200){
             ass = tempoAssoalho
         } else if(ass>=201 && ass<=400){
-            ass = tempoAssoalho * 3
+            ass = tempoAssoalho * 2.7
         } else if(ass>=401 && ass<=500){
-            ass = tempoAssoalho * 4
+            ass = tempoAssoalho * 3.5
         } else if(ass>=501){
-            ass = tempoAssoalho * 5
+            ass = tempoAssoalho * 4.5
         }
         console.log(`O tempo armazenado para o assoalho foi de ${ass}.`);
 
@@ -177,24 +141,6 @@
           qtdHomemSerigrafia = 0
         }
         console.log(`O tempo de Serigrafia Base é: ${tempseritesteiro}.`);
-
-        //TEMPO AMARRAÇÃO
-        var tempAmarracao = document.getElementById('iamarracao')
-        if(tempAmarracao.checked){
-          tempAmarracao = tempoAmarracao
-        } else{
-          tempAmarracao = 0
-        }
-        console.log(`O tempo de Amarração é: ${tempAmarracao}.`);
-        
-        //TEMPO EMBORCAÇÃO
-        var tempEmborcacao = document.getElementById('iemborcacao')
-        if(tempEmborcacao.checked){
-          tempEmborcacao = tempoEmborcacao
-        } else{
-          tempEmborcacao = 0
-        }
-        console.log(`O tempo de Emborcação é: ${tempEmborcacao}.`);
 
         //TEMPO EMENDA
         var tempoEmenda
@@ -215,15 +161,7 @@
         }
         console.log(`tempo emenda: ${tempoEmenda} e qtd H emenda: ${qtdHomemEmenda}.`)
 
-        //DOBRANDO EMENDA ASSOALHO 
-        var emendaAssoalho = document.getElementById('assoalhoEmendaS')
-        if(emendaAssoalho.checked){
-          ass = ass*1.2
-        }
-        console.log(`tempo assoalho: ${ass}`)
-          
-
-        somaTotal = tempEmborcacao + tempAmarracao + tempseritesteiro + tempoEmenda + ass
+        somaTotal = tempseritesteiro + tempoEmenda + ass
         conta = 60 / somaTotal
         resultado = conta * 8
         console.log(`O tempo de produção da embalagem é ${somaTotal} e a produtividade é ${resultado}`)
@@ -235,7 +173,7 @@
         var compassoalho = Number(compassoalhostr);
         if(compassoalho <= 0){
           compassoalho = 0
-        } else if(compassoalho<=200){
+        } else if(compassoalho<=100){
           compassoalho = 1
         } else {
           compassoalho = 2
