@@ -26,7 +26,7 @@
         <div class="row" style="margin-top: 10px;">
           <div class="col">
             <div class="col-auto">
-              <label for="largassoalho" class="col-form-label" style="font-weight: bold;">Base - Centímetros</label>
+              <label for="largassoalho" class="col-form-label">Base</label>
             </div>
             <div class="col-auto">
               <input type="number" id="largassoalho" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
@@ -39,7 +39,7 @@
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="compassoalho" class="col-form-label" style="font-weight: bold;">Base - Centímetros</label>
+              <label for="compassoalho" class="col-form-label">Assoalho</label>
             </div>
             <div class="col-auto">
               <input type="number" id="compassoalho" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
@@ -58,14 +58,29 @@
           <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="seritesteiro">
-              <label class="form-check-label" for="seritesteiro" style="font-weight: bold;">
-                Serigrafia
+              <label class="form-check-label" for="seritesteiro">
+                Serigrafia Base
+              </label>
+            </div>
+          </div>
+          <!-- EMBORCAÇÃO E AMARRAÇÃO -->
+          <div class="col" style="padding-left: 90px; margin-top: 15px;">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="iemborcacao">
+              <label class="form-check-label" for="iemborcacao">
+                Emborcação
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="iamarracao">
+              <label class="form-check-label" for="iamarracao">
+                Amarração
               </label>
             </div>
           </div>
           <!-- EMENDA -->
           <div class="col">
-            <p style="margin-bottom: 0px; font-weight: bold;">Contém emenda? </p>
+            <p style="margin-bottom: 0px;">Contém emenda no toco? </p>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadas" onclick="aparecerCaixa()">
               <label class="form-check-label" for="cxmontadas" style="font-weight: bold;">

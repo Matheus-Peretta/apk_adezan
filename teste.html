@@ -19,17 +19,32 @@
         </nav>
         <div class="cabeca">
           <a href="index.html"><img src="img/botao-voltar2.png" alt="Botão Voltar" id="botaovoltar"></a>
-          <h2 id="titulocabeca">Estrado</h2>
+          <h2 id="titulocabeca">Pallet</h2>
         </div>
 
         <!-- INÍCIO ASSOALHO -->
         <div class="row" style="margin-top: 10px;">
           <div class="col">
+            <div class="form-check" style="margin-top: 10px;">
+              <label style="display: block; margin-top: 0px;">Contém emenda no assoalho? </label>
+              <input class="form-check-input" type="radio" name="flexRadioDefaultAssoalho" id="assoalhoEmendaS">
+              <label class="form-check-label" for="assoalhoEmendaS">
+                Sim
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefaultAssoalho" id="assoalhoEmendaN">
+              <label class="form-check-label" for="assoalhoEmendaN">
+                Não
+              </label>
+            </div>
+          </div>
+          <div class="col">
             <div class="col-auto">
-              <label for="largassoalho" class="col-form-label" style="font-weight: bold;">Base - Centímetros</label>
+              <label for="largassoalho" class="col-form-label">Base</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="largassoalho" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
+              <input type="number" id="largbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -39,42 +54,56 @@
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="compassoalho" class="col-form-label" style="font-weight: bold;">Base - Centímetros</label>
+              <label for="compassoalho" class="col-form-label">Assoalho</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="compassoalho" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
+              <input type="number" id="compbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
-                Comprimento da Base 
+                Comprimento da Base
               </span>
             </div>
           </div>
         </div>
-        <!-- FIM ASSOALHO -->
         <hr>
         <!-- SERIGRAFIA -->
         <div class="row">
           <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="seritesteiro">
-              <label class="form-check-label" for="seritesteiro" style="font-weight: bold;">
-                Serigrafia
+              <label class="form-check-label" for="seritesteiro">
+                Serigrafia Base
+              </label>
+            </div>
+          </div>
+          <!-- EMBORCAÇÃO E AMARRAÇÃO -->
+          <div class="col" style="padding-left: 90px; margin-top: 15px;">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="iemborcacao">
+              <label class="form-check-label" for="iemborcacao">
+                Emborcação
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="iamarracao">
+              <label class="form-check-label" for="iamarracao">
+                Amarração
               </label>
             </div>
           </div>
           <!-- EMENDA -->
           <div class="col">
-            <p style="margin-bottom: 0px; font-weight: bold;">Contém emenda? </p>
+            <p style="margin-bottom: 0px;">Contém emenda no toco? </p>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadas" onclick="aparecerCaixa()">
-              <label class="form-check-label" for="cxmontadas" style="font-weight: bold;">
+              <label class="form-check-label" for="cxmontadas">
                 Sim
               </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadan" onclick="sumirCaixa()">
-              <label class="form-check-label" for="cxmontadan" style="font-weight: bold;">
+              <label class="form-check-label" for="cxmontadan">
                 Não
               </label>
             </div>
@@ -85,7 +114,7 @@
         </div>
         <!-- SERIGRAFIA -->
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="button" class="btn btn-outline-success" style="margin-top: 15px;" onclick="armazenar() , qtdhomens(), resumo()">Calcular</button>
+          <button type="button" class="btn btn-outline-success" style="margin-top: 25px;" onclick="armazenar() , qtdhomens(), resumo()">Calcular</button>
         </div>
         <h1 id="resuminho"></h1>
     </div>
@@ -100,19 +129,25 @@
       var cxMontadaInput = document.getElementById('cxmontAparecerCaixa') // qtd de emendas
 
       //ASSOALHO
-      var tempoAssoalho = 7
+      var tempoAssoalho = 4.6
       var tempoAssoalhoMaior = 2
       var assoalhoCm = document.getElementById('compassoalho')
 
-      //SERIGRAFIA
+      //SERIGRAFIA 
       var tempoSerigrafiaBase = 2
       var qtdHomemSerigrafia
 
-      //EMENDA
-      var emenda = 1
+      //AMARRAÇÃO
+      var tempoAmarracao = 1.5
 
-      //Homem para emenda
-      var qtdHomemEmenda
+      //EMBORCAÇÃO
+      var tempoEmborcacao = 1.5
+
+      //BANHEIRO e CAFÉ
+      var banheiro = 0.7
+      var cafe = 500
+
+      var semPezinho = document.getElementById('naopezinho');
 
       function armazenar(){
 
@@ -123,13 +158,28 @@
         } else if(ass<=200){
             ass = tempoAssoalho
         } else if(ass>=201 && ass<=400){
-            ass = tempoAssoalho * 2.7
+            ass = tempoAssoalho * 3
         } else if(ass>=401 && ass<=500){
-            ass = tempoAssoalho * 3.5
+            ass = tempoAssoalho * 4
         } else if(ass>=501){
-            ass = tempoAssoalho * 4.5
+            ass = tempoAssoalho * 5
         }
-        console.log(`O tempo armazenado para o assoalho foi de ${ass}.`);
+        console.log(`o tempo do pézinho incluso é: ${qtdpezinho}`);
+        
+        //BASE    
+        var baseCm = document.getElementById('largbase');
+        var bn1 = Number(baseCm.value)
+        if(bn1 == 0){
+            bn1 = 0
+            window.alert('Digite a largura da base')
+        } else if(bn1<=100 && semPezinho.checked){
+            bn1 = tempoBaseMaior
+        } else if(bn1<=100){
+            bn1 = tempoBase
+        } else {
+            bn1 = tempoBase
+        }
+        console.log(`O tempo armazenado para a base foi de ${bn1}.`);
 
         //SERIGRAFIA BASE
         var tempseritesteiro = document.getElementById('seritesteiro') //base
@@ -141,6 +191,24 @@
           qtdHomemSerigrafia = 0
         }
         console.log(`O tempo de Serigrafia Base é: ${tempseritesteiro}.`);
+
+        //TEMPO AMARRAÇÃO
+        var tempAmarracao = document.getElementById('iamarracao')
+        if(tempAmarracao.checked){
+          tempAmarracao = tempoAmarracao
+        } else{
+          tempAmarracao = 0
+        }
+        console.log(`O tempo de Amarração é: ${tempAmarracao}.`);
+        
+        //TEMPO EMBORCAÇÃO
+        var tempEmborcacao = document.getElementById('iemborcacao')
+        if(tempEmborcacao.checked){
+          tempEmborcacao = tempoEmborcacao
+        } else{
+          tempEmborcacao = 0
+        }
+        console.log(`O tempo de Emborcação é: ${tempEmborcacao}.`);
 
         //TEMPO EMENDA
         var tempoEmenda
@@ -161,7 +229,15 @@
         }
         console.log(`tempo emenda: ${tempoEmenda} e qtd H emenda: ${qtdHomemEmenda}.`)
 
-        somaTotal = tempseritesteiro + tempoEmenda + ass
+        //DOBRANDO EMENDA ASSOALHO 
+        var emendaAssoalho = document.getElementById('assoalhoEmendaS')
+        if(emendaAssoalho.checked){
+          ass = ass*1.2
+        }
+        console.log(`tempo assoalho: ${ass}`)
+          
+
+        somaTotal = tempEmborcacao + tempAmarracao + tempseritesteiro + tempoEmenda + ass
         conta = 60 / somaTotal
         resultado = conta * 8
         console.log(`O tempo de produção da embalagem é ${somaTotal} e a produtividade é ${resultado}`)
@@ -173,34 +249,26 @@
         var compassoalho = Number(compassoalhostr);
         if(compassoalho <= 0){
           compassoalho = 0
-        } else if(compassoalho<=100){
+        } else if(compassoalho<=200){
           compassoalho = 1
         } else {
           compassoalho = 2
         }
 
         //homem serigrafia
-        if(qtdHomemSerigrafia>=1){
+        var tempseritesteiro = document.getElementById('seritesteiro') //base
+        if(tempseritesteiro.checked){
            qtdHomemSerigrafia = 1
         } else{
            qtdHomemSerigrafia = 0
         }
 
-        somaTotalHomens = compassoalho + qtdHomemSerigrafia + qtdHomemEmenda
-        console.log(`qtd total de homens: ${somaTotalHomens}... base: ${compassoalho}, serigrafia: ${qtdHomemSerigrafia}, emenda: ${qtdHomemEmenda}`)
+        somaTotalHomens = compbase + qtdHomensPezinho + qtdHomemSerigrafia 
+        console.log(`qtd H pézinho: ${qtdHomensPezinho}. qtd H base: ${compbase}. qtd H serigrafia: ${qtdHomemSerigrafia}`)
       } 
 
       function resumo(){
         document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / 8 Horas / Produtividade: ${Math.round(resultado)}`
-
-      }
-      
-      function aparecerCaixa(){
-        cxMontadaInput.style.display = 'block'
-      }
-
-      function sumirCaixa(){
-        cxMontadaInput.style.display = 'none'      
       }
     </script>
   </body>
