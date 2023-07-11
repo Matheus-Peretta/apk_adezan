@@ -26,26 +26,26 @@
           <div class="col">
             <div class="form-check" style="margin-top: 30px;">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="skid">
-              <label class="form-check-label" for="skid">
+              <label class="form-check-label" for="skid" style="font-weight: bold;">
                 Pézinho com Squid
               </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="semskid">
-              <label class="form-check-label" for="semskid">
+              <label class="form-check-label" for="semskid" style="font-weight: bold;">
                 Pézinho sem Squid
               </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="naopezinho" >
-              <label class="form-check-label" for="naopezinho">
+              <label class="form-check-label" for="naopezinho" style="font-weight: bold;">
                 Não contém Pézinho
               </label>
             </div>
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="qtdpezinho" class="col-form-label">Pézinho</label>
+              <label for="qtdpezinho" class="col-form-label" style="font-weight: bold;">Pézinho</label>
             </div>
             <div class="col-auto">
               <input type="number" id="qtdpezinho" class="form-control" aria-describedby="passwordHelpInline" required min="0" placeholder="Quantidade de Pézinho">
@@ -63,7 +63,7 @@
         <div class="row" style="margin-top: 10px;">
           <div class="col">
             <div class="col-auto">
-              <label for="largbase" class="col-form-label">Base - centímetros</label>
+              <label for="largbase" class="col-form-label" style="font-weight: bold;">Base - centímetros</label>
             </div>
             <div class="col-auto">
               <input type="number" id="largbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
@@ -76,7 +76,7 @@
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="compbase" class="col-form-label">Base - centímetros</label>
+              <label for="compbase" class="col-form-label" style="font-weight: bold;">Base - centímetros</label>
             </div>
             <div class="col-auto">
               <input type="number" id="compbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
@@ -93,15 +93,9 @@
         <div class="row">
           <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="seripezinho">
-              <label class="form-check-label" for="seripezinho">
-                Serigrafia Pézinho
-              </label>
-            </div>
-            <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="seritesteiro">
-              <label class="form-check-label" for="seritesteiro">
-                Serigrafia Base
+              <label class="form-check-label" for="seritesteiro" style="font-weight: bold;">
+                Serigrafia
               </label>
             </div>
           </div>
@@ -109,13 +103,15 @@
           <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="iemborcacao">
-              <label class="form-check-label" for="iemborcacao">
+              <label class="form-check-label" for="iemborcacao" style="font-weight: bold;">
                 Emborcação
               </label>
             </div>
+          </div>  
+          <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="iamarracao">
-              <label class="form-check-label" for="iamarracao">
+              <label class="form-check-label" for="iamarracao" style="font-weight: bold;">
                 Amarração
               </label>
             </div>
@@ -145,9 +141,8 @@
       var tempoBaseMaior = 1.2
       
 
-      //SERIGRAFIA
-      var tempoSerigrafiaPezinho = 1 
-      var tempoSerigrafiaBase = 1
+      //SERIGRAFIA 
+      var tempoSerigrafiaBase = 2
       var qtdHomemSerigrafia
       
       //AMARRAÇÃO
@@ -208,17 +203,6 @@
         }
         console.log(`O tempo de Serigrafia Testeiro é: ${tempseritesteiro}.`);
 
-        //SERIGRAFIA PÉZINHO
-        var tempseripezinho = document.getElementById('seripezinho')
-        if(tempseripezinho.checked){
-          tempseripezinho = tempoSerigrafiaPezinho
-          qtdHomemSerigrafia = 1
-        } else{
-          tempseripezinho = 0
-          qtdHomemSerigrafia = 0
-        }
-        console.log(`O tempo de Serigrafia Pézinho é: ${tempseripezinho}.`);
-
         //TEMPO AMARRAÇÃO
         var tempAmarracao = document.getElementById('iamarracao')
         if(tempAmarracao.checked){
@@ -237,7 +221,7 @@
         }
         console.log(`O tempo de Emborcação é: ${tempEmborcacao}.`);
   
-        somaTotal = tempEmborcacao + tempAmarracao + tempseripezinho + tempseritesteiro + bn1 + qtdpezinho
+        somaTotal = tempEmborcacao + tempAmarracao + tempseritesteiro + bn1 + qtdpezinho
         conta = 60/somaTotal
         resultado = conta*8
         console.log(`O tempo de produção da embalagem é ${somaTotal}. Produtividade: ${resultado}`)
@@ -266,8 +250,7 @@
 
         //homem serigrafia
         var tempseritesteiro = document.getElementById('seritesteiro') //base
-        var tempseripezinho = document.getElementById('seripezinho')
-        if(tempseripezinho.checked || tempseritesteiro.checked){
+        if(tempseritesteiro.checked){
            qtdHomemSerigrafia = 1
         } else{
            qtdHomemSerigrafia = 0

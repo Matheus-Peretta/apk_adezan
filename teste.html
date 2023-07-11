@@ -26,7 +26,7 @@
         <div class="row" style="margin-top: 10px;">
           <div class="col">
             <div class="col-auto">
-              <label for="largassoalho" class="col-form-label">Base</label>
+              <label for="largassoalho" class="col-form-label" style="font-weight: bold;">Base - Centímetros</label>
             </div>
             <div class="col-auto">
               <input type="number" id="largassoalho" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
@@ -39,7 +39,7 @@
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="compassoalho" class="col-form-label">Base</label>
+              <label for="compassoalho" class="col-form-label" style="font-weight: bold;">Base - Centímetros</label>
             </div>
             <div class="col-auto">
               <input type="number" id="compassoalho" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
@@ -58,23 +58,23 @@
           <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="seritesteiro">
-              <label class="form-check-label" for="seritesteiro">
+              <label class="form-check-label" for="seritesteiro" style="font-weight: bold;">
                 Serigrafia
               </label>
             </div>
           </div>
           <!-- EMENDA -->
           <div class="col">
-            <p style="margin-bottom: 0px;">Contém emenda?</p>
+            <p style="margin-bottom: 0px; font-weight: bold;">Contém emenda? </p>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadas" onclick="aparecerCaixa()">
-              <label class="form-check-label" for="cxmontadas">
+              <label class="form-check-label" for="cxmontadas" style="font-weight: bold;">
                 Sim
               </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadan" onclick="sumirCaixa()">
-              <label class="form-check-label" for="cxmontadan">
+              <label class="form-check-label" for="cxmontadan" style="font-weight: bold;">
                 Não
               </label>
             </div>
@@ -100,7 +100,7 @@
       var cxMontadaInput = document.getElementById('cxmontAparecerCaixa') // qtd de emendas
 
       //ASSOALHO
-      var tempoAssoalho = 7.6
+      var tempoAssoalho = 7
       var tempoAssoalhoMaior = 2
       var assoalhoCm = document.getElementById('compassoalho')
 
@@ -123,14 +123,11 @@
         } else if(ass<=200){
             ass = tempoAssoalho
         } else if(ass>=201 && ass<=400){
-            ass = tempoAssoalho * 3
-            ass = ass * 1.2
+            ass = tempoAssoalho * 2.7
         } else if(ass>=401 && ass<=500){
-            ass = tempoAssoalho * 4
-            ass = ass * 1.2
+            ass = tempoAssoalho * 3.5
         } else if(ass>=501){
-            ass = tempoAssoalho * 5
-            ass = ass * 1.2
+            ass = tempoAssoalho * 4.5
         }
         console.log(`O tempo armazenado para o assoalho foi de ${ass}.`);
 
