@@ -21,27 +21,49 @@
           <a href="index.html"><img src="img/botao-voltar2.png" alt="Botão Voltar" id="botaovoltar"></a>
           <h2 id="titulocabeca">Pallet</h2>
         </div>
-
-        <!-- INÍCIO ASSOALHO -->
-        <div class="row" style="margin-top: 10px;">
+        <!-- INÍCIO PÉZINHO -->
+        <div class="row">
           <div class="col">
-            <div class="form-check" style="margin-top: 10px;">
-              <label style="display: block; margin-top: 0px;">Contém emenda no assoalho? </label>
-              <input class="form-check-input" type="radio" name="flexRadioDefaultAssoalho" id="assoalhoEmendaS">
-              <label class="form-check-label" for="assoalhoEmendaS">
-                Sim
+            <div class="form-check" style="margin-top: 30px;">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="skid">
+              <label class="form-check-label" for="skid" style="font-weight: bold;">
+                Pézinho com Squid
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefaultAssoalho" id="assoalhoEmendaN">
-              <label class="form-check-label" for="assoalhoEmendaN">
-                Não
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="semskid">
+              <label class="form-check-label" for="semskid" style="font-weight: bold;">
+                Pézinho sem Squid
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="naopezinho" >
+              <label class="form-check-label" for="naopezinho" style="font-weight: bold;">
+                Não contém Pézinho
               </label>
             </div>
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="largassoalho" class="col-form-label">Base</label>
+              <label for="qtdpezinho" class="col-form-label" style="font-weight: bold;">Pézinho</label>
+            </div>
+            <div class="col-auto">
+              <input type="number" id="qtdpezinho" class="form-control" aria-describedby="passwordHelpInline" required min="0" placeholder="Quantidade de Pézinho">
+            </div>
+            <div class="col-auto">
+              <span id="passwordHelpInline" class="form-text">
+                Quantos Pézinhos tem?
+              </span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <!-- FIM PÉZINHO -->
+        <!-- INÍCIO BASE -->
+        <div class="row" style="margin-top: 10px;">
+          <div class="col">
+            <div class="col-auto">
+              <label for="largbase" class="col-form-label" style="font-weight: bold;">Base - centímetros</label>
             </div>
             <div class="col-auto">
               <input type="number" id="largbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
@@ -54,7 +76,7 @@
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="compassoalho" class="col-form-label">Assoalho</label>
+              <label for="compbase" class="col-form-label" style="font-weight: bold;">Base - centímetros</label>
             </div>
             <div class="col-auto">
               <input type="number" id="compbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
@@ -72,8 +94,8 @@
           <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="seritesteiro">
-              <label class="form-check-label" for="seritesteiro">
-                Serigrafia Base
+              <label class="form-check-label" for="seritesteiro" style="font-weight: bold;">
+                Serigrafia
               </label>
             </div>
           </div>
@@ -81,34 +103,17 @@
           <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="iemborcacao">
-              <label class="form-check-label" for="iemborcacao">
+              <label class="form-check-label" for="iemborcacao" style="font-weight: bold;">
                 Emborcação
               </label>
             </div>
+          </div>  
+          <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="iamarracao">
-              <label class="form-check-label" for="iamarracao">
+              <label class="form-check-label" for="iamarracao" style="font-weight: bold;">
                 Amarração
               </label>
-            </div>
-          </div>
-          <!-- EMENDA -->
-          <div class="col">
-            <p style="margin-bottom: 0px;">Contém emenda no toco? </p>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadas" onclick="aparecerCaixa()">
-              <label class="form-check-label" for="cxmontadas">
-                Sim
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadan" onclick="sumirCaixa()">
-              <label class="form-check-label" for="cxmontadan">
-                Não
-              </label>
-            </div>
-            <div id="novacaixaform">
-              <input type="number" placeholder="Quantidade de Emendas" id="cxmontAparecerCaixa" min="0" max="20" style="width: 200px;">
             </div>
           </div>
         </div>
@@ -125,44 +130,46 @@
       let somaTotal
       let produtividade
       let somaTotalHomens
-  
-      var cxMontadaInput = document.getElementById('cxmontAparecerCaixa') // qtd de emendas
 
-      //ASSOALHO
-      var tempoAssoalho = 4.6
-      var tempoAssoalhoMaior = 2
-      var assoalhoCm = document.getElementById('compassoalho')
+      //PEZINHO
+      var tempoPezinho = 0.28
+      var tempoPezinhoSemScid = 0.18
+      var pezinhoCm = window.document.getElementById('largpezinho')
+
+      //BASE
+      var tempoBase = 0.5
+      var tempoBaseMaior = 0.65
+      
 
       //SERIGRAFIA 
-      var tempoSerigrafiaBase = 2
+      var tempoSerigrafiaBase = 1.5
       var qtdHomemSerigrafia
-
+      
       //AMARRAÇÃO
-      var tempoAmarracao = 1.5
-
+      var tempoAmarracao = 0.5
+      
       //EMBORCAÇÃO
-      var tempoEmborcacao = 1.5
-
-      //BANHEIRO e CAFÉ
-      var banheiro = 0.7
-      var cafe = 500
+      var tempoEmborcacao = 0.5
 
       var semPezinho = document.getElementById('naopezinho');
 
       function armazenar(){
-
-        //ASSOALHO    
-        var ass = Number(assoalhoCm.value)
-        if(ass == 0){
-            ass = 0
-        } else if(ass<=200){
-            ass = tempoAssoalho
-        } else if(ass>=201 && ass<=400){
-            ass = tempoAssoalho * 3
-        } else if(ass>=401 && ass<=500){
-            ass = tempoAssoalho * 4
-        } else if(ass>=501){
-            ass = tempoAssoalho * 5
+        //PEZINHO
+        var quantidadep = document.getElementById('qtdpezinho');
+        var qtdpezinho = Number(quantidadep.value);
+        var skid = document.getElementById('skid'); 
+        var semSkid = document.getElementById('semskid');
+        
+        var somapezinho
+        
+        if(semPezinho.checked){
+          qtdpezinho = 0
+        } else if(qtdpezinho == 0){
+          qtdpezinho = 0
+        } else if(qtdpezinho >= 1 && skid.checked){
+          qtdpezinho = qtdpezinho*tempoPezinho
+        } else if(qtdpezinho>=1 && semSkid.checked){
+          qtdpezinho = tempoPezinhoSemScid*qtdpezinho
         }
         console.log(`o tempo do pézinho incluso é: ${qtdpezinho}`);
         
@@ -172,10 +179,10 @@
         if(bn1 == 0){
             bn1 = 0
             window.alert('Digite a largura da base')
-        } else if(bn1<=100 && semPezinho.checked){
-            bn1 = tempoBaseMaior
-        } else if(bn1<=100){
+        } else if(bn1<=90){
             bn1 = tempoBase
+        } else if(bn1>=91){
+            bn1 = tempoBaseMaior
         } else {
             bn1 = tempoBase
         }
@@ -190,7 +197,7 @@
           tempseritesteiro = 0
           qtdHomemSerigrafia = 0
         }
-        console.log(`O tempo de Serigrafia Base é: ${tempseritesteiro}.`);
+        console.log(`O tempo de Serigrafia Testeiro é: ${tempseritesteiro}.`);
 
         //TEMPO AMARRAÇÃO
         var tempAmarracao = document.getElementById('iamarracao')
@@ -209,50 +216,32 @@
           tempEmborcacao = 0
         }
         console.log(`O tempo de Emborcação é: ${tempEmborcacao}.`);
-
-        //TEMPO EMENDA
-        var tempoEmenda
-
-        if(cxMontadaInput.value<=0){
-          tempoEmenda = 0
-          qtdHomemEmenda = 0
-        } else if(cxMontadaInput.value>0){
-          tempoEmenda = cxMontadaInput.value * emenda
-          qtdHomemEmenda = 1
-        }
-
-        //NÃO SELECIONADO(EMENDA TOCO)
-        var naoSelectToco = document.getElementById('cxmontadan')
-        if(naoSelectToco.checked){
-          tempoEmenda = 0
-          qtdHomemEmenda = 0
-        }
-        console.log(`tempo emenda: ${tempoEmenda} e qtd H emenda: ${qtdHomemEmenda}.`)
-
-        //DOBRANDO EMENDA ASSOALHO 
-        var emendaAssoalho = document.getElementById('assoalhoEmendaS')
-        if(emendaAssoalho.checked){
-          ass = ass*1.2
-        }
-        console.log(`tempo assoalho: ${ass}`)
-          
-
-        somaTotal = tempEmborcacao + tempAmarracao + tempseritesteiro + tempoEmenda + ass
-        conta = 60 / somaTotal
-        resultado = conta * 8
-        console.log(`O tempo de produção da embalagem é ${somaTotal} e a produtividade é ${resultado}`)
+  
+        somaTotal = tempEmborcacao + tempAmarracao + tempseritesteiro + bn1 + qtdpezinho
+        conta = 60/somaTotal
+        resultado = conta*8
+        console.log(`O tempo de produção da embalagem é ${somaTotal}. Produtividade: ${resultado}`)
       }
 
       function qtdhomens(){
-        //qtd homens assoalho
-        var compassoalhostr = window.document.getElementById('compassoalho').value;
-        var compassoalho = Number(compassoalhostr);
-        if(compassoalho <= 0){
-          compassoalho = 0
-        } else if(compassoalho<=200){
-          compassoalho = 1
-        } else {
-          compassoalho = 2
+        //qtd homens pézinho
+        var qtdHpezinhostr = window.document.getElementById('qtdpezinho').value;
+        var qtdHomensPezinho = Number(qtdHpezinhostr);
+        if(qtdHomensPezinho <= 0 || semPezinho.checked){
+          qtdHomensPezinho = 0
+        } else{
+          qtdHomensPezinho = 1
+        }
+
+        //qtd homens base
+        var compbasestr = window.document.getElementById('largbase')
+        var compbase = Number(compbasestr.value)
+        if(compbase <= 0){
+          compbase = 0
+        } else if(compbase<=90){
+          compbase = 1
+        } else if(compbase>90){
+          compbase = 2
         }
 
         //homem serigrafia

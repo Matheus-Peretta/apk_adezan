@@ -133,16 +133,16 @@
 
       //PEZINHO
       var tempoPezinho = 0.28
-      var tempoPezinhoSemScid = 0.25
+      var tempoPezinhoSemScid = 0.18
       var pezinhoCm = window.document.getElementById('largpezinho')
 
       //BASE
-      var tempoBase = 1
-      var tempoBaseMaior = 1.2
+      var tempoBase = 0.5
+      var tempoBaseMaior = 0.65
       
 
       //SERIGRAFIA 
-      var tempoSerigrafiaBase = 2
+      var tempoSerigrafiaBase = 1.5
       var qtdHomemSerigrafia
       
       //AMARRAÇÃO
@@ -150,10 +150,6 @@
       
       //EMBORCAÇÃO
       var tempoEmborcacao = 0.5
-
-      //BANHEIRO e CAFÉ
-      var banheiro = 0.7
-      var cafe = 500
 
       var semPezinho = document.getElementById('naopezinho');
 
@@ -183,10 +179,10 @@
         if(bn1 == 0){
             bn1 = 0
             window.alert('Digite a largura da base')
-        } else if(bn1<=100 && semPezinho.checked){
-            bn1 = tempoBaseMaior
-        } else if(bn1<=100){
+        } else if(bn1<=90){
             bn1 = tempoBase
+        } else if(bn1>=91){
+            bn1 = tempoBaseMaior
         } else {
             bn1 = tempoBase
         }
