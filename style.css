@@ -13,6 +13,9 @@ h1#resuminho{
 input#cxmontAparecerCaixa{
     display: none;
 }
+input#AparecerCampoQtdPezinho{
+    display: none;
+}
 .botaoPrimeiraTela{
     display: block; 
     margin: 0px auto 10px auto; 

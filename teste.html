@@ -1,4 +1,4 @@
-<!-- TESTE BASE, NOVA INTERFACE -->
+<!-- TESTE BASE (NOVA INTERFACE) -->
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -25,39 +25,61 @@
 
         <!-- INÍCIO PÉZINHO -->
         <div class="row">
-          <div class="col">
-            <div class="form-check" style="margin-top: 30px;">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="skid">
+          <div class="col" style="margin-top: -10px;">
+            <div class="col-auto">
+              <label for="largassoalho" class="col-form-label" style="font-weight: bold;">Contém Pézinho?</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="skid" onclick="aparecerCaixaQtdPezinho()">
               <label class="form-check-label" for="skid" style="font-weight: bold;">
-                Pézinho com Squid
+                Sim
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="semskid">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="semskid" onclick="sumirCaixaQtdPezinho()">
               <label class="form-check-label" for="semskid" style="font-weight: bold;">
-                Pézinho sem Squid
+                Não
+              </label>
+            </div>
+            <div id="caixaFormQtdPezinho">
+              <input type="number" placeholder="Quantidade de Pézinhos" id="AparecerCampoQtdPezinho" min="0" max="20" style="width: 200px;">
+            </div>
+          </div>
+          
+          <!-- EMENDA NO PÉZINHO -->
+          <div class="col">
+            <p style="margin-bottom: 0px; font-weight: bold;">Contém emenda no pézinho?</p>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="emendapezinho" id="iemendasimpezinho">
+              <label class="form-check-label" for="iemendasimpezinho" style="font-weight: bold;">
+                Sim
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="naopezinho" >
-              <label class="form-check-label" for="naopezinho" style="font-weight: bold;">
-                Não contém Pézinho
+              <input class="form-check-input" type="radio" name="emendapezinho" id="iemendanaopezinho">
+              <label class="form-check-label" for="iemendanaopezinho" style="font-weight: bold;">
+                Não
               </label>
             </div>
           </div>
+
+          <!-- SQUID NA BASE -->
           <div class="col">
-            <div class="col-auto">
-              <label for="qtdpezinho" class="col-form-label" style="font-weight: bold;">Pézinho</label>
+            <p style="margin-bottom: 0px; font-weight: bold;">Contém squid na base?</p>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="squidbase" id="isquidbasesim">
+              <label class="form-check-label" for="isquidbasesim" style="font-weight: bold;">
+                Sim
+              </label>
             </div>
-            <div class="col-auto">
-              <input type="number" id="qtdpezinho" class="form-control" aria-describedby="passwordHelpInline" required min="0" placeholder="Quantidade de Pézinho">
-            </div>
-            <div class="col-auto">
-              <span id="passwordHelpInline" class="form-text">
-                Quantos Pézinhos tem?
-              </span>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="squidbase" id="isquidbasenao">
+              <label class="form-check-label" for="isquidbasenao" style="font-weight: bold;">
+                Não
+              </label>
             </div>
           </div>
+
         </div>
         <hr>
         <!-- FIM PÉZINHO -->
@@ -105,16 +127,16 @@
           </div>
           <!-- EMENDA -->
           <div class="col">
-            <p style="margin-bottom: 0px; font-weight: bold;">Contém emenda?</p>
+            <p style="margin-bottom: 0px; font-weight: bold;">Contém emenda no assoalho?</p>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadas" onclick="aparecerCaixa()">
-              <label class="form-check-label" for="cxmontadas">
+              <label class="form-check-label" for="cxmontadas" style="font-weight: bold;">
                 Sim
               </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadan" onclick="sumirCaixa()">
-              <label class="form-check-label" for="cxmontadan">
+              <label class="form-check-label" for="cxmontadan" style="font-weight: bold;">
                 Não
               </label>
             </div>
@@ -137,7 +159,8 @@
       let produtividade
       let somaTotalHomens
   
-      var cxMontadaInput = document.getElementById('cxmontAparecerCaixa') // qtd de emendas
+      var cxMontadaInput = document.getElementById('cxmontAparecerCaixa') // qtd de emendas assoalho
+      var emendaPezinhoInput = document.getElementById('AparecerCampoQtdPezinho') // qtd de pézinhos
 
       //ASSOALHO
       var tempoAssoalho = 4.6
@@ -245,6 +268,14 @@
 
       function sumirCaixa(){
         cxMontadaInput.style.display = 'none'      
+      }
+
+      function aparecerCaixaQtdPezinho(){
+        emendaPezinhoInput.style.display = 'block'
+      }
+
+      function sumirCaixaQtdPezinho(){
+        emendaPezinhoInput.style.display = 'none'      
       }
     </script>
   </body>
