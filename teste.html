@@ -1,3 +1,4 @@
+<!-- TESTE BASE, NOVA INTERFACE -->
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -19,8 +20,9 @@
         </nav>
         <div class="cabeca">
           <a href="index.html"><img src="img/botao-voltar2.png" alt="Botão Voltar" id="botaovoltar"></a>
-          <h2 id="titulocabeca">Pallet</h2>
+          <h2 id="titulocabeca">Base</h2>
         </div>
+
         <!-- INÍCIO PÉZINHO -->
         <div class="row">
           <div class="col">
@@ -59,14 +61,15 @@
         </div>
         <hr>
         <!-- FIM PÉZINHO -->
-        <!-- INÍCIO BASE -->
+
+        <!-- INÍCIO ASSOALHO -->
         <div class="row" style="margin-top: 10px;">
           <div class="col">
             <div class="col-auto">
-              <label for="largbase" class="col-form-label" style="font-weight: bold;">Base - centímetros</label>
+              <label for="largassoalho" class="col-form-label" style="font-weight: bold;">Assoalho</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="largbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
+              <input type="number" id="largassoalho" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -76,18 +79,19 @@
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="compbase" class="col-form-label" style="font-weight: bold;">Base - centímetros</label>
+              <label for="compassoalho" class="col-form-label" style="font-weight: bold;">Assoalho</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="compbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
+              <input type="number" id="compassoalho" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
-                Comprimento da Base
+                Comprimento da Base 
               </span>
             </div>
           </div>
         </div>
+        <!-- FIM ASSOALHO -->
         <hr>
         <!-- SERIGRAFIA -->
         <div class="row">
@@ -95,31 +99,33 @@
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="seritesteiro">
               <label class="form-check-label" for="seritesteiro" style="font-weight: bold;">
-                Serigrafia
+                Serigrafia 
               </label>
             </div>
           </div>
-          <!-- EMBORCAÇÃO E AMARRAÇÃO -->
-          <div class="col" style="padding-left: 90px; margin-top: 15px;">
+          <!-- EMENDA -->
+          <div class="col">
+            <p style="margin-bottom: 0px; font-weight: bold;">Contém emenda?</p>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="iemborcacao">
-              <label class="form-check-label" for="iemborcacao" style="font-weight: bold;">
-                Emborcação
+              <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadas" onclick="aparecerCaixa()">
+              <label class="form-check-label" for="cxmontadas">
+                Sim
               </label>
             </div>
-          </div>  
-          <div class="col" style="padding-left: 90px; margin-top: 15px;">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="iamarracao">
-              <label class="form-check-label" for="iamarracao" style="font-weight: bold;">
-                Amarração
+              <input class="form-check-input" type="radio" name="flexRadioDefaultToco" id="cxmontadan" onclick="sumirCaixa()">
+              <label class="form-check-label" for="cxmontadan">
+                Não
               </label>
+            </div>
+            <div id="novacaixaform">
+              <input type="number" placeholder="Quantidade de Emendas" id="cxmontAparecerCaixa" min="0" max="20" style="width: 200px;">
             </div>
           </div>
         </div>
         <!-- SERIGRAFIA -->
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="button" class="btn btn-outline-success" style="margin-top: 25px;" onclick="armazenar() , qtdhomens(), resumo()">Calcular</button>
+          <button type="button" class="btn btn-outline-success" style="margin-top: 15px;" onclick="armazenar() , qtdhomens(), resumo()">Calcular</button>
         </div>
         <h1 id="resuminho"></h1>
     </div>
@@ -130,63 +136,44 @@
       let somaTotal
       let produtividade
       let somaTotalHomens
+  
+      var cxMontadaInput = document.getElementById('cxmontAparecerCaixa') // qtd de emendas
 
-      //PEZINHO
-      var tempoPezinho = 0.28
-      var tempoPezinhoSemScid = 0.18
-      var pezinhoCm = window.document.getElementById('largpezinho')
+      //ASSOALHO
+      var tempoAssoalho = 4.6
+      var tempoAssoalhoMaior = 2
+      var assoalhoCm = document.getElementById('compassoalho')
 
-      //BASE
-      var tempoBase = 0.5
-      var tempoBaseMaior = 0.65
-      
-
-      //SERIGRAFIA 
-      var tempoSerigrafiaBase = 1.5
+      //SERIGRAFIA
+      var tempoSerigrafiaBase = 2
       var qtdHomemSerigrafia
-      
-      //AMARRAÇÃO
-      var tempoAmarracao = 0.5
-      
-      //EMBORCAÇÃO
-      var tempoEmborcacao = 0.5
 
-      var semPezinho = document.getElementById('naopezinho');
+      //AMARRAÇÃO
+      var tempoAmarracao = 1.5
+
+      //EMBORCAÇÃO
+      var tempoEmborcacao = 1.5
+
+      //EMENDA
+      var emenda = 1
+
+      //Homem para emenda
+      var qtdHomemEmenda
 
       function armazenar(){
-        //PEZINHO
-        var quantidadep = document.getElementById('qtdpezinho');
-        var qtdpezinho = Number(quantidadep.value);
-        var skid = document.getElementById('skid'); 
-        var semSkid = document.getElementById('semskid');
-        
-        var somapezinho
-        
-        if(semPezinho.checked){
-          qtdpezinho = 0
-        } else if(qtdpezinho == 0){
-          qtdpezinho = 0
-        } else if(qtdpezinho >= 1 && skid.checked){
-          qtdpezinho = qtdpezinho*tempoPezinho
-        } else if(qtdpezinho>=1 && semSkid.checked){
-          qtdpezinho = tempoPezinhoSemScid*qtdpezinho
+
+        //ASSOALHO    
+        var ass = Number(assoalhoCm.value)
+        if(ass == 0){
+            ass = 0
+        } else if(ass<=300){
+            ass = tempoAssoalho * 3
+        } else if(ass>=301 && ass<=400){
+            ass = tempoAssoalho * 4
+        } else if(ass>=401 && ass<=500){
+            ass = tempoAssoalho * 5
         }
-        console.log(`o tempo do pézinho incluso é: ${qtdpezinho}`);
-        
-        //BASE    
-        var baseCm = document.getElementById('largbase');
-        var bn1 = Number(baseCm.value)
-        if(bn1 == 0){
-            bn1 = 0
-            window.alert('Digite a largura da base')
-        } else if(bn1<=90){
-            bn1 = tempoBase
-        } else if(bn1>=91){
-            bn1 = tempoBaseMaior
-        } else {
-            bn1 = tempoBase
-        }
-        console.log(`O tempo armazenado para a base foi de ${bn1}.`);
+        console.log(`O tempo armazenado para o assoalho foi de ${ass}.`);
 
         //SERIGRAFIA BASE
         var tempseritesteiro = document.getElementById('seritesteiro') //base
@@ -197,67 +184,67 @@
           tempseritesteiro = 0
           qtdHomemSerigrafia = 0
         }
-        console.log(`O tempo de Serigrafia Testeiro é: ${tempseritesteiro}.`);
+        console.log(`O tempo de Serigrafia Base é: ${tempseritesteiro}.`);
 
-        //TEMPO AMARRAÇÃO
-        var tempAmarracao = document.getElementById('iamarracao')
-        if(tempAmarracao.checked){
-          tempAmarracao = tempoAmarracao
-        } else{
-          tempAmarracao = 0
+        //TEMPO EMENDA
+        var tempoEmenda
+
+        if(cxMontadaInput.value<=0){
+          tempoEmenda = 0
+          qtdHomemEmenda = 0
+        } else if(cxMontadaInput.value>0){
+          tempoEmenda = cxMontadaInput.value * emenda
+          qtdHomemEmenda = 1
         }
-        console.log(`O tempo de Amarração é: ${tempAmarracao}.`);
-        
-        //TEMPO EMBORCAÇÃO
-        var tempEmborcacao = document.getElementById('iemborcacao')
-        if(tempEmborcacao.checked){
-          tempEmborcacao = tempoEmborcacao
-        } else{
-          tempEmborcacao = 0
+
+        //NÃO SELECIONADO(EMENDA TOCO)
+        var naoSelectToco = document.getElementById('cxmontadan')
+        if(naoSelectToco.checked){
+          tempoEmenda = 0
+          qtdHomemEmenda = 0
         }
-        console.log(`O tempo de Emborcação é: ${tempEmborcacao}.`);
-  
-        somaTotal = tempEmborcacao + tempAmarracao + tempseritesteiro + bn1 + qtdpezinho
-        conta = 60/somaTotal
-        resultado = conta*8
-        console.log(`O tempo de produção da embalagem é ${somaTotal}. Produtividade: ${resultado}`)
+        console.log(`tempo emenda: ${tempoEmenda} e qtd H emenda: ${qtdHomemEmenda}.`)
+          
+        somaTotal = tempseritesteiro + tempoEmenda + ass
+        conta = 60 / somaTotal
+        resultado = conta * 8
+        console.log(`O tempo de produção da embalagem é ${somaTotal} e a produtividade é ${resultado}`)
       }
 
       function qtdhomens(){
-        //qtd homens pézinho
-        var qtdHpezinhostr = window.document.getElementById('qtdpezinho').value;
-        var qtdHomensPezinho = Number(qtdHpezinhostr);
-        if(qtdHomensPezinho <= 0 || semPezinho.checked){
-          qtdHomensPezinho = 0
-        } else{
-          qtdHomensPezinho = 1
-        }
-
-        //qtd homens base
-        var compbasestr = window.document.getElementById('largbase')
-        var compbase = Number(compbasestr.value)
-        if(compbase <= 0){
-          compbase = 0
-        } else if(compbase<=90){
-          compbase = 1
-        } else if(compbase>90){
-          compbase = 2
+        //qtd homens assoalho
+        var compassoalhostr = window.document.getElementById('compassoalho').value;
+        var compassoalho = Number(compassoalhostr);
+        if(compassoalho <= 0){
+          compassoalho = 0
+        } else if(compassoalho<=200){
+          compassoalho = 1
+        } else {
+          compassoalho = 2
         }
 
         //homem serigrafia
-        var tempseritesteiro = document.getElementById('seritesteiro') //base
-        if(tempseritesteiro.checked){
+        if(qtdHomemSerigrafia>=1){
            qtdHomemSerigrafia = 1
         } else{
            qtdHomemSerigrafia = 0
         }
 
-        somaTotalHomens = compbase + qtdHomensPezinho + qtdHomemSerigrafia 
-        console.log(`qtd H pézinho: ${qtdHomensPezinho}. qtd H base: ${compbase}. qtd H serigrafia: ${qtdHomemSerigrafia}`)
+        somaTotalHomens = compassoalho + qtdHomemSerigrafia + qtdHomemEmenda
+        console.log(`qtd total de homens: ${somaTotalHomens}... base: ${compassoalho}, serigrafia: ${qtdHomemSerigrafia}, emenda: ${qtdHomemEmenda}`)
       } 
 
       function resumo(){
         document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / 8 Horas / Produtividade: ${Math.round(resultado)}`
+
+      }
+      
+      function aparecerCaixa(){
+        cxMontadaInput.style.display = 'block'
+      }
+
+      function sumirCaixa(){
+        cxMontadaInput.style.display = 'none'      
       }
     </script>
   </body>
