@@ -79,7 +79,6 @@
               </label>
             </div>
           </div>
-
         </div>
         <hr>
         <!-- FIM PÉZINHO -->
@@ -158,9 +157,16 @@
       let somaTotal
       let produtividade
       let somaTotalHomens
-  
-      var cxMontadaInput = document.getElementById('cxmontAparecerCaixa') // qtd de emendas assoalho
-      var emendaPezinhoInput = document.getElementById('AparecerCampoQtdPezinho') // qtd de pézinhos
+
+      //PÉZINHO
+      var tempoPezinho
+      var qtdPezinhoInput = document.getElementById('AparecerCampoQtdPezinho') // qtd de pézinhos
+      var qtdEmendas = document.getElementById('cxmontAparecerCaixa') // qtd de emendas pézinhos
+
+      //SQUID
+      var qtdHomemSquidBase
+      var squidBaseSim = document.getElementById('isquidbasesim')
+      var squidBaseNao = document.getElementById('isquidbasenao')
 
       //ASSOALHO
       var tempoAssoalho = 4.6
@@ -171,19 +177,25 @@
       var tempoSerigrafiaBase = 2
       var qtdHomemSerigrafia
 
-      //AMARRAÇÃO
-      var tempoAmarracao = 1.5
-
-      //EMBORCAÇÃO
-      var tempoEmborcacao = 1.5
-
       //EMENDA
       var emenda = 1
-
-      //Homem para emenda
       var qtdHomemEmenda
 
       function armazenar(){
+
+        //PÉZINHO
+        if(qtdPezinhoInput.value<=0){
+          tempoPezinho = 0
+        } else if(qtdPezinhoInput.value>0){
+          tempoPezinho = qtdPezinhoInput.value * 0.7
+        }
+
+        //EMENDA MADEIRAS (PÉZINHO)
+        if(qtdPezinhoInput.value<=0){
+          tempoPezinho = 0
+        } else if(qtdPezinhoInput.value>0){
+          tempoPezinho = qtdPezinhoInput.value * 0.7
+        }
 
         //ASSOALHO    
         var ass = Number(assoalhoCm.value)
@@ -212,11 +224,11 @@
         //TEMPO EMENDA
         var tempoEmenda
 
-        if(cxMontadaInput.value<=0){
+        if(qtdEmendas.value<=0){
           tempoEmenda = 0
           qtdHomemEmenda = 0
-        } else if(cxMontadaInput.value>0){
-          tempoEmenda = cxMontadaInput.value * emenda
+        } else if(qtdEmendas.value>0){
+          tempoEmenda = qtdEmendas.value * emenda
           qtdHomemEmenda = 1
         }
 
@@ -228,7 +240,7 @@
         }
         console.log(`tempo emenda: ${tempoEmenda} e qtd H emenda: ${qtdHomemEmenda}.`)
           
-        somaTotal = tempseritesteiro + tempoEmenda + ass
+        somaTotal = tempseritesteiro + tempoEmenda + ass + tempoPezinho
         conta = 60 / somaTotal
         resultado = conta * 8
         console.log(`O tempo de produção da embalagem é ${somaTotal} e a produtividade é ${resultado}`)
@@ -253,7 +265,14 @@
            qtdHomemSerigrafia = 0
         }
 
-        somaTotalHomens = compassoalho + qtdHomemSerigrafia + qtdHomemEmenda
+        //SQUID BASE
+        if(squidBaseSim.checked){
+          qtdHomemSquidBase = 1 
+        } else if(squidBaseNao.checked){
+          qtdHomemSquidBase = 0
+        }
+
+        somaTotalHomens = compassoalho + qtdHomemSerigrafia + qtdHomemEmenda + qtdHomemSquidBase
         console.log(`qtd total de homens: ${somaTotalHomens}... base: ${compassoalho}, serigrafia: ${qtdHomemSerigrafia}, emenda: ${qtdHomemEmenda}`)
       } 
 
@@ -263,19 +282,19 @@
       }
       
       function aparecerCaixa(){
-        cxMontadaInput.style.display = 'block'
+        qtdEmendas.style.display = 'block'
       }
 
       function sumirCaixa(){
-        cxMontadaInput.style.display = 'none'      
+        qtdEmendas.style.display = 'none'      
       }
 
       function aparecerCaixaQtdPezinho(){
-        emendaPezinhoInput.style.display = 'block'
+        qtdPezinhoInput.style.display = 'block'
       }
 
       function sumirCaixaQtdPezinho(){
-        emendaPezinhoInput.style.display = 'none'      
+        qtdPezinhoInput.style.display = 'none'      
       }
     </script>
   </body>
