@@ -160,12 +160,18 @@
         var skid = document.getElementById('skid'); 
         var semSkid = document.getElementById('semskid');
         
-        var somapezinho
-        
         if(semPezinho.checked){
           qtdpezinho = 0
-        } else if(qtdpezinho == 0){
+        } else if(skid.checked && qtdpezinho == 0){
           qtdpezinho = 0
+          window.alert('Digite a quantidade de pézinho')
+          throw "Não foi digitado a quantidade de pézinho"
+
+        } else if(semSkid.checked && qtdpezinho == 0){
+          qtdpezinho = 0
+          window.alert('Digite a quantidade de pézinho')
+          throw "Não foi digitado a quantidade de pézinho!"
+
         } else if(qtdpezinho >= 1 && skid.checked){
           qtdpezinho = qtdpezinho*tempoPezinho
         } else if(qtdpezinho>=1 && semSkid.checked){
@@ -179,6 +185,8 @@
         if(bn1 == 0){
             bn1 = 0
             window.alert('Digite a largura da base')
+            throw "Não foi digitado a largura da base"
+            
         } else if(bn1<=90){
             bn1 = tempoBase
         } else if(bn1>=91){
@@ -272,6 +280,7 @@
       function resumo(){
         document.getElementById('resuminho').innerHTML = `<strong>${somaTotalHomens} Homens / 8 Horas / Produtividade: ${Math.round(resultado)}`
       }
+      
     </script>
   </body>
 </html>
