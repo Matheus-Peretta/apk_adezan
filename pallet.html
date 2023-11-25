@@ -63,10 +63,10 @@
         <div class="row" style="margin-top: 10px;">
           <div class="col">
             <div class="col-auto">
-              <label for="largbase" class="col-form-label" style="font-weight: bold;">Base - centímetros</label>
+              <label for="ilargbase" class="col-form-label" style="font-weight: bold;">Base - centímetros</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="largbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
+              <input type="number" id="ilargbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -76,10 +76,10 @@
           </div>
           <div class="col">
             <div class="col-auto">
-              <label for="compbase" class="col-form-label" style="font-weight: bold;">Base - centímetros</label>
+              <label for="icompbase" class="col-form-label" style="font-weight: bold;">Base - centímetros</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="compbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
+              <input type="number" id="icompbase" class="form-control" aria-describedby="passwordHelpInline" required placeholder="cm" min="0">
             </div>
             <div class="col-auto">
               <span id="passwordHelpInline" class="form-text">
@@ -174,7 +174,7 @@
         console.log(`o tempo do pézinho incluso é: ${qtdpezinho}`);
         
         //BASE    
-        var baseCm = document.getElementById('largbase');
+        var baseCm = document.getElementById('ilargbase');
         var bn1 = Number(baseCm.value)
         if(bn1 == 0){
             bn1 = 0
@@ -234,15 +234,28 @@
         }
 
         //qtd homens base
-        var compbasestr = window.document.getElementById('largbase')
+        var compbasestr = window.document.getElementById('icompbase')
         var compbase = Number(compbasestr.value)
-        if(compbase <= 0){
-          compbase = 0
+        
+        var novaQuantidade
+
+        if(compbase<=0){
+          novaQuantidade = 0
         } else if(compbase<=90){
-          compbase = 1
+          novaQuantidade = 1
         } else if(compbase>90){
-          compbase = 2
+          novaQuantidade = 2
         }
+
+        var largbasestr = window.document.getElementById('ilargbase')
+        var largbase = Number(largbasestr.value)
+
+        if(largbase>90){
+          novaQuantidade = 2
+        } else if (compbase<90 & largbase<90){
+          novaQuantidade = 1
+        }
+
 
         //homem serigrafia
         var tempseritesteiro = document.getElementById('seritesteiro') //base
@@ -252,8 +265,8 @@
            qtdHomemSerigrafia = 0
         }
 
-        somaTotalHomens = compbase + qtdHomensPezinho + qtdHomemSerigrafia 
-        console.log(`qtd H pézinho: ${qtdHomensPezinho}. qtd H base: ${compbase}. qtd H serigrafia: ${qtdHomemSerigrafia}`)
+        somaTotalHomens = novaQuantidade + qtdHomensPezinho + qtdHomemSerigrafia 
+        console.log(`qtd H pézinho: ${qtdHomensPezinho}. qtd H base: ${novaQuantidade}. qtd H serigrafia: ${qtdHomemSerigrafia}`)
       } 
 
       function resumo(){
